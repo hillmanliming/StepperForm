@@ -6,56 +6,127 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
+    interface FormField {
+        "error"?: string;
+        "label"?: string;
+        "minlength"?: number;
+        "name": string;
+        "placeholder"?: string;
+        "required"?: boolean;
+        "type": string;
+        "value"?: string;
+    }
+    interface FormNavigation {
+        "currentStep": number;
+        "totalSteps": number;
+    }
+    interface FormStep {
+        "step": number;
+    }
+    interface FormStepper {
     }
 }
+export interface FormFieldCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLFormFieldElement;
+}
+export interface FormNavigationCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLFormNavigationElement;
+}
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLFormFieldElementEventMap {
+        "valueChanged": { name: string; value: string };
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    interface HTMLFormFieldElement extends Components.FormField, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLFormFieldElementEventMap>(type: K, listener: (this: HTMLFormFieldElement, ev: FormFieldCustomEvent<HTMLFormFieldElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLFormFieldElementEventMap>(type: K, listener: (this: HTMLFormFieldElement, ev: FormFieldCustomEvent<HTMLFormFieldElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLFormFieldElement: {
+        prototype: HTMLFormFieldElement;
+        new (): HTMLFormFieldElement;
+    };
+    interface HTMLFormNavigationElementEventMap {
+        "navigateBack": void;
+        "navigateNext": void;
+    }
+    interface HTMLFormNavigationElement extends Components.FormNavigation, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLFormNavigationElementEventMap>(type: K, listener: (this: HTMLFormNavigationElement, ev: FormNavigationCustomEvent<HTMLFormNavigationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLFormNavigationElementEventMap>(type: K, listener: (this: HTMLFormNavigationElement, ev: FormNavigationCustomEvent<HTMLFormNavigationElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLFormNavigationElement: {
+        prototype: HTMLFormNavigationElement;
+        new (): HTMLFormNavigationElement;
+    };
+    interface HTMLFormStepElement extends Components.FormStep, HTMLStencilElement {
+    }
+    var HTMLFormStepElement: {
+        prototype: HTMLFormStepElement;
+        new (): HTMLFormStepElement;
+    };
+    interface HTMLFormStepperElement extends Components.FormStepper, HTMLStencilElement {
+    }
+    var HTMLFormStepperElement: {
+        prototype: HTMLFormStepperElement;
+        new (): HTMLFormStepperElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "form-field": HTMLFormFieldElement;
+        "form-navigation": HTMLFormNavigationElement;
+        "form-step": HTMLFormStepElement;
+        "form-stepper": HTMLFormStepperElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
+    interface FormField {
+        "error"?: string;
+        "label"?: string;
+        "minlength"?: number;
+        "name": string;
+        "onValueChanged"?: (event: FormFieldCustomEvent<{ name: string; value: string }>) => void;
+        "placeholder"?: string;
+        "required"?: boolean;
+        "type"?: string;
+        "value"?: string;
+    }
+    interface FormNavigation {
+        "currentStep"?: number;
+        "onNavigateBack"?: (event: FormNavigationCustomEvent<void>) => void;
+        "onNavigateNext"?: (event: FormNavigationCustomEvent<void>) => void;
+        "totalSteps"?: number;
+    }
+    interface FormStep {
+        "step"?: number;
+    }
+    interface FormStepper {
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "form-field": FormField;
+        "form-navigation": FormNavigation;
+        "form-step": FormStep;
+        "form-stepper": FormStepper;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "form-field": LocalJSX.FormField & JSXBase.HTMLAttributes<HTMLFormFieldElement>;
+            "form-navigation": LocalJSX.FormNavigation & JSXBase.HTMLAttributes<HTMLFormNavigationElement>;
+            "form-step": LocalJSX.FormStep & JSXBase.HTMLAttributes<HTMLFormStepElement>;
+            "form-stepper": LocalJSX.FormStepper & JSXBase.HTMLAttributes<HTMLFormStepperElement>;
         }
     }
 }

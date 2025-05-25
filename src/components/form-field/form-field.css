@@ -1,0 +1,21 @@
+.form-field input {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-field input:focus {
+  outline: none;
+  border-color: #0078d4;
+}
+
+.form-field .error {
+  color: red;
+  font-size: 0.85rem;
+}
+
+.required {
+  color: red;
+}
