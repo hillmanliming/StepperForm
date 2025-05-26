@@ -39,7 +39,7 @@ export class FormStepper {
           <form-step step={0}>
             <form-field name="Naam" label="Volledige naam" type="text" value="" required aria-required="true" error="Error" minlength={3}></form-field>
             <form-field
-              name="Werkervaring"
+              name="WerkervaringABC"
               label="Aantal jaren relevante werkervaring"
               type="number"
               value=""
