@@ -3,6 +3,7 @@
   flex-direction: column;
   padding: 0.5rem;
   border: 1px solid #ccc;
+  width: clamp(1rem, 15vw + 1rem, 30rem);
 }
 
 .form-field input:focus {
@@ -10,11 +11,12 @@
   border-color: #0078d4;
 }
 
-.form-field .error {
-  color: red;
-  font-size: 0.85rem;
-}
-
 .required {
   color: red;
+}
+.error {
+  min-height: 1.2em; /* reserves vertical space */
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.25em;
 }

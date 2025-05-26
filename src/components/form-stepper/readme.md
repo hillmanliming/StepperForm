@@ -9,6 +9,7 @@
 
 ### Depends on
 
+- [stepper-status](../stepper-status)
 - [form-step](../form-step)
 - [form-field](../form-field)
 - [form-navigation](../form-navigation)
@@ -16,6 +17,7 @@
 ### Graph
 ```mermaid
 graph TD;
+  form-stepper --> stepper-status
   form-stepper --> form-step
   form-stepper --> form-field
   form-stepper --> form-navigation

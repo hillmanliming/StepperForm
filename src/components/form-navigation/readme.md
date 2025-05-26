@@ -7,19 +7,12 @@
 
 ## Properties
 
-| Property      | Attribute      | Description | Type      | Default     |
-| ------------- | -------------- | ----------- | --------- | ----------- |
-| `currentStep` | `current-step` |             | `number`  | `undefined` |
-| `disableNext` | `disable-next` |             | `boolean` | `false`     |
-| `totalSteps`  | `total-steps`  |             | `number`  | `undefined` |
-
-
-## Events
-
-| Event          | Description | Type                |
-| -------------- | ----------- | ------------------- |
-| `navigateBack` |             | `CustomEvent<void>` |
-| `navigateNext` |             | `CustomEvent<void>` |
+| Property       | Attribute       | Description | Type                     | Default     |
+| -------------- | --------------- | ----------- | ------------------------ | ----------- |
+| `currentStep`  | `current-step`  |             | `number`                 | `undefined` |
+| `disableNext`  | `disable-next`  |             | `boolean`                | `undefined` |
+| `maxStep`      | `max-step`      |             | `number`                 | `undefined` |
+| `navigateStep` | `navigate-step` |             | `(step: number) => void` | `undefined` |
 
 
 ## Dependencies

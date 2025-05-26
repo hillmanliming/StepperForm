@@ -15,14 +15,14 @@ export class FormField {
   @Prop() minlength?: number;
   @Prop() error: string;
   @State() valid: boolean = true; // Use @State() for mutable valid state
+  @State() touched: boolean = false;
   @Event() valueChanged: EventEmitter<{ name: string; value: string; valid: boolean }>;
 
   private validateField(value: string): boolean {
     if (this.required && value.trim().length < (this.minlength || 0)) {
-      console.log('error');
       return false;
     }
-    console.log('valid');
+
     return true;
   }
 
@@ -31,6 +31,10 @@ export class FormField {
     const isValid = this.validateField(input.value);
     this.valid = isValid; // Update the valid state
     this.valueChanged.emit({ name: this.name, value: input.value, valid: isValid });
+  };
+
+  private handleBlur = () => {
+    this.touched = true;
   };
 
   render() {
@@ -51,8 +55,11 @@ export class FormField {
           placeholder={this.placeholder}
           minlength={this.minlength}
           onInput={this.handleInput}
+          onBlur={this.handleBlur}
         />
-        {this.error && <p class="error">{this.error}</p>}
+        <p class="error" style={{ visibility: !this.valid && this.touched ? 'visible' : 'hidden' }}>
+          {this.error}
+        </p>
       </div>
     );
   }

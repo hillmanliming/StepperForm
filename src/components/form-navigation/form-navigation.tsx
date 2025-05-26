@@ -8,6 +8,8 @@ import { Component, h, Prop } from '@stencil/core';
 export class FormNavigation {
   @Prop() currentStep: number;
   @Prop() maxStep: number;
+  @Prop() disableNext: boolean;
+
   @Prop() navigateStep: (step: number) => void;
 
   private goToStep(step: number) {
@@ -20,7 +22,7 @@ export class FormNavigation {
         <button type="button" onClick={() => this.goToStep(this.currentStep - 1)} disabled={this.currentStep === 0}>
           Back
         </button>
-        <button type="button" onClick={() => this.goToStep(this.currentStep + 1)} disabled={this.currentStep === this.maxStep}>
+        <button type="button" onClick={() => this.goToStep(this.currentStep + 1)} disabled={this.currentStep === this.maxStep || this.disableNext}>
           Next
         </button>
       </div>

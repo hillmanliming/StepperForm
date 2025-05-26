@@ -21,9 +21,9 @@
 
 ## Events
 
-| Event          | Description | Type                                            |
-| -------------- | ----------- | ----------------------------------------------- |
-| `valueChanged` |             | `CustomEvent<{ name: string; value: string; }>` |
+| Event          | Description | Type                                                            |
+| -------------- | ----------- | --------------------------------------------------------------- |
+| `valueChanged` |             | `CustomEvent<{ name: string; value: string; valid: boolean; }>` |
 
 
 ## Dependencies

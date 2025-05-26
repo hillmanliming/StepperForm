@@ -1,3 +1,8 @@
 :host {
   display: block;
 }
+
+.nav-buttons {
+  display: flex;
+  justify-self: end;
+}

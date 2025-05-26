@@ -18,6 +18,7 @@ export namespace Components {
     }
     interface FormNavigation {
         "currentStep": number;
+        "disableNext": boolean;
         "maxStep": number;
         "navigateStep": (step: number) => void;
     }
@@ -25,6 +26,8 @@ export namespace Components {
         "step": number;
     }
     interface FormStepper {
+    }
+    interface StepperStatus {
     }
 }
 export interface FormFieldCustomEvent<T> extends CustomEvent<T> {
@@ -67,11 +70,18 @@ declare global {
         prototype: HTMLFormStepperElement;
         new (): HTMLFormStepperElement;
     };
+    interface HTMLStepperStatusElement extends Components.StepperStatus, HTMLStencilElement {
+    }
+    var HTMLStepperStatusElement: {
+        prototype: HTMLStepperStatusElement;
+        new (): HTMLStepperStatusElement;
+    };
     interface HTMLElementTagNameMap {
         "form-field": HTMLFormFieldElement;
         "form-navigation": HTMLFormNavigationElement;
         "form-step": HTMLFormStepElement;
         "form-stepper": HTMLFormStepperElement;
+        "stepper-status": HTMLStepperStatusElement;
     }
 }
 declare namespace LocalJSX {
@@ -88,6 +98,7 @@ declare namespace LocalJSX {
     }
     interface FormNavigation {
         "currentStep"?: number;
+        "disableNext"?: boolean;
         "maxStep"?: number;
         "navigateStep"?: (step: number) => void;
     }
@@ -96,11 +107,14 @@ declare namespace LocalJSX {
     }
     interface FormStepper {
     }
+    interface StepperStatus {
+    }
     interface IntrinsicElements {
         "form-field": FormField;
         "form-navigation": FormNavigation;
         "form-step": FormStep;
         "form-stepper": FormStepper;
+        "stepper-status": StepperStatus;
     }
 }
 export { LocalJSX as JSX };
@@ -111,6 +125,7 @@ declare module "@stencil/core" {
             "form-navigation": LocalJSX.FormNavigation & JSXBase.HTMLAttributes<HTMLFormNavigationElement>;
             "form-step": LocalJSX.FormStep & JSXBase.HTMLAttributes<HTMLFormStepElement>;
             "form-stepper": LocalJSX.FormStepper & JSXBase.HTMLAttributes<HTMLFormStepperElement>;
+            "stepper-status": LocalJSX.StepperStatus & JSXBase.HTMLAttributes<HTMLStepperStatusElement>;
         }
     }
 }
