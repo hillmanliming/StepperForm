@@ -17,13 +17,15 @@ export class FormStepper {
     return (
       <form>
         <form-step step={0}>
-          <form-field name="first name" label="Name" type="text" placeholder="Enter your name" value="" required aria-required="true" error="Invalid input"></form-field>
+          <form-field name="Naam" label="Volledige naam" type="text" value="" required aria-required="true" error="" minlength={3}></form-field>
+          <form-field name="Werkervaring" label="Aantal jaren relevante werkervaring" type="text" value="" required aria-required="true" error="" minlength={3}></form-field>
         </form-step>
         <form-step step={1}>
-          <form-field name="email" label="Email" type="email" placeholder="Enter your email" value="" required aria-required="true" error="Invalid input"></form-field>
+          <form-field name="Email" label="Email" type="email" value="" required aria-required="true" error="" minlength={3}></form-field>
+          <form-field name="Mobiele nummer" label="Mobiele nummer" type="number" value="" required aria-required="true" error="" minlength={3}></form-field>
         </form-step>
         <form-step step={2}>
-          <form-field name="phone" label="Phone" type="number" placeholder="Enter your phone number" value="" required aria-required="true" error="Invalid input"></form-field>
+          <form-field name="Transportation" label="Transport" type="text" value="" required aria-required="true" error="" minlength={3}></form-field>
         </form-step>
         <form-step step={3}>
           <p>
@@ -33,14 +35,11 @@ export class FormStepper {
             explicabo quas. Animi deleniti quo dolor.
           </p>
         </form-step>
-        <div class="nav-buttons">
-          <button type="button" onClick={() => this.goToStep(this.currentStep - 1)} disabled={this.currentStep === 0}>
-            Back
-          </button>
-          <button type="button" onClick={() => this.goToStep(this.currentStep + 1)} disabled={this.currentStep === 3}>
-            Next
-          </button>
-        </div>
+        <form-navigation
+          currentStep={this.currentStep}
+          maxStep={3}
+          navigateStep={(step: number) => this.goToStep(step)}
+        ></form-navigation>
       </form>
     );
   }

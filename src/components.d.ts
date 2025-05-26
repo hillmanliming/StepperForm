@@ -7,7 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface FormField {
-        "error"?: string;
+        "error": string;
         "label"?: string;
         "minlength"?: number;
         "name": string;
@@ -18,7 +18,8 @@ export namespace Components {
     }
     interface FormNavigation {
         "currentStep": number;
-        "totalSteps": number;
+        "maxStep": number;
+        "navigateStep": (step: number) => void;
     }
     interface FormStep {
         "step": number;
@@ -30,13 +31,9 @@ export interface FormFieldCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLFormFieldElement;
 }
-export interface FormNavigationCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLFormNavigationElement;
-}
 declare global {
     interface HTMLFormFieldElementEventMap {
-        "valueChanged": { name: string; value: string };
+        "valueChanged": { name: string; value: string; valid: boolean };
     }
     interface HTMLFormFieldElement extends Components.FormField, HTMLStencilElement {
         addEventListener<K extends keyof HTMLFormFieldElementEventMap>(type: K, listener: (this: HTMLFormFieldElement, ev: FormFieldCustomEvent<HTMLFormFieldElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -52,19 +49,7 @@ declare global {
         prototype: HTMLFormFieldElement;
         new (): HTMLFormFieldElement;
     };
-    interface HTMLFormNavigationElementEventMap {
-        "navigateBack": void;
-        "navigateNext": void;
-    }
     interface HTMLFormNavigationElement extends Components.FormNavigation, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLFormNavigationElementEventMap>(type: K, listener: (this: HTMLFormNavigationElement, ev: FormNavigationCustomEvent<HTMLFormNavigationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLFormNavigationElementEventMap>(type: K, listener: (this: HTMLFormNavigationElement, ev: FormNavigationCustomEvent<HTMLFormNavigationElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLFormNavigationElement: {
         prototype: HTMLFormNavigationElement;
@@ -95,7 +80,7 @@ declare namespace LocalJSX {
         "label"?: string;
         "minlength"?: number;
         "name": string;
-        "onValueChanged"?: (event: FormFieldCustomEvent<{ name: string; value: string }>) => void;
+        "onValueChanged"?: (event: FormFieldCustomEvent<{ name: string; value: string; valid: boolean }>) => void;
         "placeholder"?: string;
         "required"?: boolean;
         "type"?: string;
@@ -103,9 +88,8 @@ declare namespace LocalJSX {
     }
     interface FormNavigation {
         "currentStep"?: number;
-        "onNavigateBack"?: (event: FormNavigationCustomEvent<void>) => void;
-        "onNavigateNext"?: (event: FormNavigationCustomEvent<void>) => void;
-        "totalSteps"?: number;
+        "maxStep"?: number;
+        "navigateStep"?: (step: number) => void;
     }
     interface FormStep {
         "step"?: number;

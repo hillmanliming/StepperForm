@@ -16,7 +16,7 @@
 | `placeholder`       | `placeholder` |             | `string`  | `undefined` |
 | `required`          | `required`    |             | `boolean` | `undefined` |
 | `type`              | `type`        |             | `string`  | `'text'`    |
-| `value`             | `value`       |             | `string`  | `undefined` |
+| `value`             | `value`       |             | `string`  | `''`        |
 
 
 ## Events

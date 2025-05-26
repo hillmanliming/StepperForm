@@ -20,7 +20,6 @@ export class FormStep {
     return (
       <div class="form-step">
         <slot></slot>
-
       </div>
     );
   }

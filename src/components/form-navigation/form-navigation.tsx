@@ -1,4 +1,4 @@
-import { Component, h, Prop, Event, EventEmitter } from '@stencil/core';
+import { Component, h, Prop } from '@stencil/core';
 
 @Component({
   tag: 'form-navigation',
@@ -6,19 +6,21 @@ import { Component, h, Prop, Event, EventEmitter } from '@stencil/core';
   shadow: true,
 })
 export class FormNavigation {
-  @Prop() currentStep: number; // Current active step
-  @Prop() totalSteps: number; // Total number of steps
+  @Prop() currentStep: number;
+  @Prop() maxStep: number;
+  @Prop() navigateStep: (step: number) => void;
 
-  @Event() navigateBack: EventEmitter<void>; // Event to navigate back
-  @Event() navigateNext: EventEmitter<void>; // Event to navigate next
+  private goToStep(step: number) {
+    this.navigateStep?.(step);
+  }
 
   render() {
     return (
       <div class="nav-buttons">
-        <button type="button" onClick={() => this.navigateBack.emit()} disabled={this.currentStep === 0}>
+        <button type="button" onClick={() => this.goToStep(this.currentStep - 1)} disabled={this.currentStep === 0}>
           Back
         </button>
-        <button type="button" onClick={() => this.navigateNext.emit()} disabled={this.currentStep === this.totalSteps - 1}>
+        <button type="button" onClick={() => this.goToStep(this.currentStep + 1)} disabled={this.currentStep === this.maxStep}>
           Next
         </button>
       </div>
