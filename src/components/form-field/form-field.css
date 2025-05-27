@@ -19,4 +19,15 @@
   color: red;
   font-size: 0.875rem;
   margin-top: 0.25em;
+  border: red;
+}
+
+label {
+  display: inline-block;
+  width: 15rem;
+  margin-right: 1rem;
+}
+
+.form-field input.invalid {
+  border-color: red;
 }

@@ -9,8 +9,10 @@ export namespace Components {
     interface FormField {
         "error": string;
         "label"?: string;
+        "maxlength"?: number;
         "minlength"?: number;
         "name": string;
+        "pattern"?: string;
         "placeholder"?: string;
         "required"?: boolean;
         "type": string;
@@ -88,9 +90,11 @@ declare namespace LocalJSX {
     interface FormField {
         "error"?: string;
         "label"?: string;
+        "maxlength"?: number;
         "minlength"?: number;
         "name": string;
         "onValueChanged"?: (event: FormFieldCustomEvent<{ name: string; value: string; valid: boolean }>) => void;
+        "pattern"?: string;
         "placeholder"?: string;
         "required"?: boolean;
         "type"?: string;

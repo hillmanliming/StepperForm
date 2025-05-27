@@ -13,9 +13,12 @@ export class FormField {
   @Prop() required?: boolean;
   @Prop() placeholder?: string;
   @Prop() minlength?: number;
+  @Prop() maxlength?: number;
+  @Prop() pattern?: string;
   @Prop() error: string;
   @State() valid: boolean = true; // Use @State() for mutable valid state
   @State() touched: boolean = false;
+  @State() wasValid: boolean = false;
   @Event() valueChanged: EventEmitter<{ name: string; value: string; valid: boolean }>;
 
   private validateField(value: string): boolean {
@@ -29,7 +32,16 @@ export class FormField {
   private handleInput = (event: Event) => {
     const input = event.target as HTMLInputElement;
     const isValid = this.validateField(input.value);
-    this.valid = isValid; // Update the valid state
+    this.valid = isValid;
+    // meet the requirements for the field but emptied
+    if (isValid) {
+      this.wasValid = true;
+    }
+
+    if (this.wasValid && !isValid) {
+      this.touched = true;
+    }
+
     this.valueChanged.emit({ name: this.name, value: input.value, valid: isValid });
   };
 
@@ -54,8 +66,12 @@ export class FormField {
           required={this.required}
           placeholder={this.placeholder}
           minlength={this.minlength}
+          maxlength={this.maxlength}
+          // CHECK PATTERN STUFF
+          pattern={this.pattern}
           onInput={this.handleInput}
           onBlur={this.handleBlur}
+          class={{ invalid: !this.valid && this.touched }}
         />
         <p class="error" style={{ visibility: !this.valid && this.touched ? 'visible' : 'hidden' }}>
           {this.error}

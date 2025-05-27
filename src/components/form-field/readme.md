@@ -11,6 +11,7 @@
 | ------------------- | ------------- | ----------- | --------- | ----------- |
 | `error`             | `error`       |             | `string`  | `undefined` |
 | `label`             | `label`       |             | `string`  | `undefined` |
+| `maxlength`         | `maxlength`   |             | `number`  | `undefined` |
 | `minlength`         | `minlength`   |             | `number`  | `undefined` |
 | `name` _(required)_ | `name`        |             | `string`  | `undefined` |
 | `placeholder`       | `placeholder` |             | `string`  | `undefined` |
