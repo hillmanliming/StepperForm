@@ -20,17 +20,22 @@ export class FormField {
   @State() touched: boolean = false;
   @Event() valueChanged: EventEmitter<{ name: string; value: string; valid: boolean }>;
 
+  private debounceTimer: ReturnType<typeof setTimeout>;
   private handleInput = (event: Event) => {
     const input = event.target as HTMLInputElement;
+    const value = input.value;
     this.touched = true;
-    this.valid = input.checkValidity();
-    this.valueChanged.emit({ name: this.name, value: input.value, valid: this.valid });
+    //debounce, after 250ms handleInput
+    clearTimeout(this.debounceTimer);
+    this.debounceTimer = setTimeout(() => {
+      this.valid = input.checkValidity();
+      this.valueChanged.emit({ name: this.name, value, valid: this.valid });
+    }, 250);
   };
 
   private handleBlur = () => {
     this.touched = true;
   };
-
   render() {
     return (
       <div class="form-field">

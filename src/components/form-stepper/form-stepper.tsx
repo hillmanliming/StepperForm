@@ -37,7 +37,18 @@ export class FormStepper {
         <stepper-status></stepper-status>
         <form class="form">
           <form-step step={0}>
-            <form-field name="Naam" label="Voor- en achternaam " type="text" value="" required aria-required="true" error="Error" minlength={3} maxlength={30}></form-field>
+            <form-field
+              name="Naam"
+              label="Voor- en achternaam "
+              type="text"
+              value=""
+              placeholder="John Doe"
+              required
+              aria-required="true"
+              error="Error"
+              minlength={3}
+              maxlength={30}
+            ></form-field>
             <form-field
               name="Werkervaring"
               label="Aantal jaar werkervaring"
@@ -45,6 +56,7 @@ export class FormStepper {
               pattern="[0-9]+"
               type="text"
               value=""
+              placeholder="1"
               required
               aria-required="true"
               error="Error"
@@ -53,11 +65,44 @@ export class FormStepper {
             ></form-field>
           </form-step>
           <form-step step={1}>
-            <form-field name="Email" label="Email" type="email" value="" required aria-required="true" error="Error" minlength={3} maxlength={30}></form-field>
-            <form-field name="Mobiele nummer" label="Mobiele nummer" type="tel" value="" required aria-required="true" error="Error" minlength={3} maxlength={10}></form-field>
+            <form-field
+              name="Email"
+              label="Email"
+              type="email"
+              value=""
+              placeholder="abc@def.nl"
+              required
+              aria-required="true"
+              error="Error"
+              minlength={3}
+              maxlength={30}
+            ></form-field>
+            <form-field
+              name="Mobiele nummer"
+              label="Mobiele nummer"
+              type="tel"
+              value=""
+              placeholder="0612345678"
+              required
+              aria-required="true"
+              error="Error"
+              minlength={3}
+              maxlength={10}
+            ></form-field>
           </form-step>
           <form-step step={2}>
-            <form-field name="Transport" label="Transport" type="text" value="" required aria-required="true" error="Error" minlength={3} maxlength={40}></form-field>
+            <form-field
+              name="Transport"
+              label="Transport"
+              type="text"
+              value=""
+              placeholder="Auto"
+              required
+              aria-required="true"
+              error="Error"
+              minlength={3}
+              maxlength={40}
+            ></form-field>
           </form-step>
           <form-step step={3}>
             <p>
