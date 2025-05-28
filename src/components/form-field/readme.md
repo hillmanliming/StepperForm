@@ -14,6 +14,7 @@
 | `maxlength`         | `maxlength`   |             | `number`  | `undefined` |
 | `minlength`         | `minlength`   |             | `number`  | `undefined` |
 | `name` _(required)_ | `name`        |             | `string`  | `undefined` |
+| `pattern`           | `pattern`     |             | `string`  | `undefined` |
 | `placeholder`       | `placeholder` |             | `string`  | `undefined` |
 | `required`          | `required`    |             | `boolean` | `undefined` |
 | `type`              | `type`        |             | `string`  | `'text'`    |

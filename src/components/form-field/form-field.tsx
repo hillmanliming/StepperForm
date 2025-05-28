@@ -18,31 +18,13 @@ export class FormField {
   @Prop() error: string;
   @State() valid: boolean = true; // Use @State() for mutable valid state
   @State() touched: boolean = false;
-  @State() wasValid: boolean = false;
   @Event() valueChanged: EventEmitter<{ name: string; value: string; valid: boolean }>;
-
-  private validateField(value: string): boolean {
-    if (this.required && value.trim().length < (this.minlength || 0)) {
-      return false;
-    }
-
-    return true;
-  }
 
   private handleInput = (event: Event) => {
     const input = event.target as HTMLInputElement;
-    const isValid = this.validateField(input.value);
-    this.valid = isValid;
-    // meet the requirements for the field but emptied
-    if (isValid) {
-      this.wasValid = true;
-    }
-
-    if (this.wasValid && !isValid) {
-      this.touched = true;
-    }
-
-    this.valueChanged.emit({ name: this.name, value: input.value, valid: isValid });
+    this.touched = true;
+    this.valid = input.checkValidity();
+    this.valueChanged.emit({ name: this.name, value: input.value, valid: this.valid });
   };
 
   private handleBlur = () => {
