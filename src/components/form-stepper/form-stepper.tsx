@@ -1,4 +1,5 @@
 import { Component, h, State, Listen } from '@stencil/core';
+import { formDataStore } from '../../store/store-form-date';
 
 @Component({
   tag: 'form-stepper',
@@ -8,16 +9,25 @@ import { Component, h, State, Listen } from '@stencil/core';
 export class FormStepper {
   @State() currentStep: number = 0;
   @State() validationStatus: { [key: string]: boolean } = {};
+  @State() formData: { [key: string]: string } = {};
 
   goToStep(step: number) {
     this.currentStep = step;
     window.dispatchEvent(new CustomEvent('updateStep', { detail: step }));
   }
-
+  //Validating inputs
   @Listen('valueChanged')
   handleFieldChange(event: CustomEvent<{ name: string; valid: boolean }>) {
     const { name, valid } = event.detail;
     this.validationStatus = { ...this.validationStatus, [name]: valid };
+    console.log('Validation Status:', this.validationStatus);
+  }
+  //Send inputs to store
+  @Listen('valueChanged')
+  handleValueChanged(event: CustomEvent<{ name: string; value: string }>) {
+    const { name, value } = event.detail;
+    formDataStore.setField(name, value);
+    this.formData = formDataStore.getAllFields();
   }
 
   private isCurrentStepValid(): boolean {
@@ -80,6 +90,7 @@ export class FormStepper {
             <form-field
               name="Mobiele nummer"
               label="Mobiele nummer"
+              pattern="[0-9]+"
               type="tel"
               value=""
               placeholder="0612345678"
@@ -106,11 +117,15 @@ export class FormStepper {
           </form-step>
           <form-step step={3}>
             <p>
-              summary
-              <br></br>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio laboriosam corporis porro voluptatum eius fuga, libero quis iste quisquam vel cum expedita quae
-              delectus explicabo quas. Animi deleniti quo dolor.
+              <strong>Samenvatting:</strong>
             </p>
+            <ul>
+              {Object.entries(this.formData).map(([key, value]) => (
+                <li>
+                  <strong>{key}:</strong> {value}
+                </li>
+              ))}
+            </ul>
           </form-step>
           <form-navigation
             currentStep={this.currentStep}

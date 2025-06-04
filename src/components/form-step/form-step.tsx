@@ -16,15 +16,16 @@ export class FormStep {
   }
 
   @Listen('valueChanged')
-  handleValueChanged(event: CustomEvent<{ name: string; value: string }>) {
-    const { name, value } = event.detail;
-    formDataStore.setField(name, value);
-  }
-
-  render() {
-    if (this.step === 3) {
-      console.log('Summary', formDataStore.getAllFields());
+  handleValueChanged(event: CustomEvent<{ name: string; value: string; valid: boolean }>) {
+    const { name, value, valid } = event.detail;
+    if (valid) {
+      formDataStore.setField(name, value);
+      console.log(`Field ${name} updated with value: ${value}`);
+    } else {
+      console.warn(`Field ${name} is invalid. Value not updated.`);
     }
+  }
+  render() {
     if (this.step !== this.currentStep) return null;
 
     return (
