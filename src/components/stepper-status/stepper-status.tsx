@@ -1,4 +1,5 @@
-import { Component, h } from '@stencil/core';
+import { Component, h, State } from '@stencil/core';
+import { state, onChange } from '../../store/store-form-data';
 
 @Component({
   tag: 'stepper-status',
@@ -6,15 +7,33 @@ import { Component, h } from '@stencil/core';
   shadow: true,
 })
 export class StepperStatus {
+  @State() currentStep: number;
+
+  componentWillLoad() {
+    // Initialize currentStep from the global store
+    this.currentStep = state.currentStep;
+
+    // Listen for changes to currentStep in the global store
+    onChange('currentStep', newStep => {
+      this.currentStep = newStep;
+    });
+  }
+
   render() {
+    const steps = [1, 2, 3, 4]; // Define the steps
+
     return (
-      <div>
-        <div class="stepper-status">
-          <div class="current">1</div>
-          <div class="inactive">2</div>
-          <div class="inactive">3</div>
-          <div class="completed">4</div>
-        </div>
+      <div class="stepper-status">
+        {steps.map((step, index) => {
+          let stepClass = 'inactive';
+          if (index < this.currentStep) {
+            stepClass = 'completed'; // Mark previous steps as complete
+          } else if (index === this.currentStep) {
+            stepClass = 'active'; // Mark the current step as active
+          }
+
+          return <div class={stepClass}>{step}</div>;
+        })}
       </div>
     );
   }

@@ -1,5 +1,5 @@
-import { Component, h, Prop, State, Listen } from '@stencil/core';
-import { formDataStore } from '../../store/store-form-date';
+import { Component, h, Prop, State, Listen, Element } from '@stencil/core';
+import { formDataStore } from '../../store/store-form-data';
 
 @Component({
   tag: 'form-step',
@@ -9,6 +9,7 @@ import { formDataStore } from '../../store/store-form-date';
 export class FormStep {
   @Prop() step: number;
   @State() currentStep: number = 0;
+  @Element() el: HTMLElement;
 
   @Listen('updateStep', { target: 'window' })
   handleStepChange(event: CustomEvent<number>) {
@@ -20,13 +21,21 @@ export class FormStep {
     const { name, value, valid } = event.detail;
     if (valid) {
       formDataStore.setField(name, value);
-      console.log(`Field ${name} updated with value: ${value}`);
-    } else {
-      console.warn(`Field ${name} is invalid. Value not updated.`);
     }
   }
   render() {
     if (this.step !== this.currentStep) return null;
+
+    if(this.step === this.currentStep) {
+      const child = this.el.querySelector('form-field');
+  
+      if(child?.shadowRoot) { 
+        setTimeout(() => {
+          const input = child.shadowRoot.querySelector('input');
+          input.focus();
+        },0)
+      }
+    }
 
     return (
       <div class="form-step">
@@ -35,3 +44,5 @@ export class FormStep {
     );
   }
 }
+
+// stepper focus flexbox reverse

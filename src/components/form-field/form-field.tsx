@@ -54,7 +54,6 @@ export class FormField {
           placeholder={this.placeholder}
           minlength={this.minlength}
           maxlength={this.maxlength}
-          // CHECK PATTERN STUFF
           pattern={this.pattern}
           onInput={this.handleInput}
           onBlur={this.handleBlur}

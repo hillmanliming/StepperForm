@@ -1,5 +1,5 @@
 import { Component, h, State, Listen } from '@stencil/core';
-import { formDataStore } from '../../store/store-form-date';
+import { formDataStore } from '../../store/store-form-data';
 
 @Component({
   tag: 'form-stepper',
@@ -11,18 +11,24 @@ export class FormStepper {
   @State() validationStatus: { [key: string]: boolean } = {};
   @State() formData: { [key: string]: string } = {};
 
+  componentWillLoad() {
+    // Initialize currentStep from the global store
+    this.currentStep = formDataStore.getCurrentStep();
+  }
+
   goToStep(step: number) {
     this.currentStep = step;
+    formDataStore.setCurrentStep(step); // Update the global store
     window.dispatchEvent(new CustomEvent('updateStep', { detail: step }));
   }
-  //Validating inputs
+
   @Listen('valueChanged')
   handleFieldChange(event: CustomEvent<{ name: string; valid: boolean }>) {
     const { name, valid } = event.detail;
     this.validationStatus = { ...this.validationStatus, [name]: valid };
     console.log('Validation Status:', this.validationStatus);
   }
-  //Send inputs to store
+
   @Listen('valueChanged')
   handleValueChanged(event: CustomEvent<{ name: string; value: string }>) {
     const { name, value } = event.detail;
@@ -49,7 +55,7 @@ export class FormStepper {
           <form-step step={0}>
             <form-field
               name="Naam"
-              label="Voor- en achternaam "
+              label="Voor- en achternaam"
               type="text"
               value=""
               placeholder="John Doe"
