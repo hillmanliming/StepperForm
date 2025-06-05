@@ -23,9 +23,10 @@ export class FormStepper {
   }
 
   @Listen('valueChanged')
-  handleFieldChange(event: CustomEvent<{ name: string; valid: boolean }>) {
-    const { name, valid } = event.detail;
-    this.validationStatus = { ...this.validationStatus, [name]: valid };
+  handleFieldChange(event: CustomEvent<{ name: string; valid: boolean; value?: string }>) {
+    const { name, valid, value } = event.detail;
+
+    this.validationStatus = { ...this.validationStatus, [name]: valid && (!value || value !== '0') };
     console.log('Validation Status:', this.validationStatus);
   }
 
@@ -38,9 +39,9 @@ export class FormStepper {
 
   private isCurrentStepValid(): boolean {
     const stepFieldsMap = {
-      0: ['Naam', 'Werkervaring'],
-      1: ['Email', 'Mobiele nummer'],
-      2: ['Transport'],
+      0: ['Naam', 'Email'],
+      1: ['Mobiele nummer', 'Werkervaring'],
+      2: ['Woonplaats', 'Vervoersmiddel'],
       3: [],
     };
     const requiredFields = stepFieldsMap[this.currentStep];
@@ -61,9 +62,36 @@ export class FormStepper {
               placeholder="John Doe"
               required
               aria-required="true"
-              error="Error"
-              minlength={3}
+              error="Voer alstublieft een geldige naam in."
+              minlength={2}
               maxlength={30}
+            ></form-field>
+            <form-field
+              name="Email"
+              label="Email"
+              type="email"
+              value=""
+              placeholder="abc@def.nl"
+              required
+              aria-required="true"
+              error="Voer alstublieft een geldig emailadres in."
+              minlength={2}
+              maxlength={30}
+            ></form-field>
+          </form-step>
+          <form-step step={1}>
+            <form-field
+              name="Mobiele nummer"
+              label="Mobiele nummer"
+              pattern="[0-9]+"
+              type="tel"
+              value=""
+              placeholder="0612345678"
+              required
+              aria-required="true"
+              error="Voer alstublieft een geldig mobiel nummer in."
+              minlength={2}
+              maxlength={10}
             ></form-field>
             <form-field
               name="Werkervaring"
@@ -75,50 +103,35 @@ export class FormStepper {
               placeholder="1"
               required
               aria-required="true"
-              error="Error"
+              error="Voer alstublieft een geldig aantal jaren in."
               minlength={1}
               maxlength={2}
             ></form-field>
           </form-step>
-          <form-step step={1}>
-            <form-field
-              name="Email"
-              label="Email"
-              type="email"
-              value=""
-              placeholder="abc@def.nl"
-              required
-              aria-required="true"
-              error="Error"
-              minlength={3}
-              maxlength={30}
-            ></form-field>
-            <form-field
-              name="Mobiele nummer"
-              label="Mobiele nummer"
-              pattern="[0-9]+"
-              type="tel"
-              value=""
-              placeholder="0612345678"
-              required
-              aria-required="true"
-              error="Error"
-              minlength={3}
-              maxlength={10}
-            ></form-field>
-          </form-step>
           <form-step step={2}>
             <form-field
-              name="Transport"
-              label="Transport"
+              name="Woonplaats"
+              label="Woonplaats"
               type="text"
               value=""
-              placeholder="Auto"
+              placeholder="Amsterdam"
               required
               aria-required="true"
-              error="Error"
-              minlength={3}
-              maxlength={40}
+              error="Voer alstublieft een geldige woonplaats in."
+              minlength={2}
+              maxlength={15}
+            ></form-field>
+            <form-field
+              label="Vervoersmiddel"
+              name="Vervoersmiddel"
+              type="select"
+              required={true}
+              error="Selecteer alstublieft een vervoersmiddel."
+              options={[
+                { value: '0', label: '----- Selecteer optie -----' },
+                { value: 'OV', label: 'Openbaar vervoer' },
+                { value: 'Eigen vervoer', label: 'Eigen vervoer' },
+              ]}
             ></form-field>
           </form-step>
           <form-step step={3}>

@@ -25,14 +25,14 @@ export class StepperStatus {
     return (
       <div class="stepper-status">
         {steps.map((step, index) => {
-          let stepClass = 'inactive';
+          let stepClass = 'inactive ';
           if (index < this.currentStep) {
             stepClass = 'completed'; // Mark previous steps as complete
           } else if (index === this.currentStep) {
             stepClass = 'active'; // Mark the current step as active
           }
 
-          return <div class={stepClass}>{step}</div>;
+          return <div class={stepClass}>{stepClass === 'completed' ? '' : step}</div>;
         })}
       </div>
     );

@@ -26,14 +26,14 @@ export class FormStep {
   render() {
     if (this.step !== this.currentStep) return null;
 
-    if(this.step === this.currentStep) {
+    if (this.step === this.currentStep) {
       const child = this.el.querySelector('form-field');
-  
-      if(child?.shadowRoot) { 
+
+      if (child?.shadowRoot) {
         setTimeout(() => {
           const input = child.shadowRoot.querySelector('input');
           input.focus();
-        },0)
+        }, 0);
       }
     }
 

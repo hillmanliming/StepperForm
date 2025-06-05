@@ -1,33 +1,51 @@
-.form-field input {
+.form-field {
   display: flex;
   flex-direction: column;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  width: clamp(1rem, 15vw + 1rem, 30rem);
-}
-
-.form-field input:focus {
-  outline: none;
-  border-color: #0078d4;
-}
-
-.required {
-  color: red;
-}
-.error {
-  min-height: 1.2em; /* reserves vertical space */
-  color: red;
-  font-size: 0.875rem;
-  margin-top: 0.25em;
-  border: red;
 }
 
 label {
-  display: inline-block;
-  width: 15rem;
-  margin-right: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 1rem; /* Add 1rem space between the label and the input field */
 }
 
-.form-field input.invalid {
-  border-color: red;
+.required {
+  color: #d9534f;
+  margin-left: 0.25rem;
+}
+
+input,
+select {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+  appearance: none; /* Remove default styling for select */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: #027bc7;
+  box-shadow: 0 0 4px rgba(2, 123, 199, 0.25);
+  outline: none;
+}
+
+input.invalid,
+select.invalid {
+  border-color: #d9534f;
+}
+
+.error {
+  font-size: 0.875rem;
+  color: #d9534f;
+  visibility: hidden;
+  margin-top: 0.25rem; /* No gap between the input field and the error message */
+}
+
+input.invalid + .error,
+select.invalid + .error {
+  visibility: visible;
 }

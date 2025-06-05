@@ -12,6 +12,7 @@ export namespace Components {
         "maxlength"?: number;
         "minlength"?: number;
         "name": string;
+        "options"?: { value: string; label: string }[];
         "pattern"?: string;
         "placeholder"?: string;
         "required"?: boolean;
@@ -94,6 +95,7 @@ declare namespace LocalJSX {
         "minlength"?: number;
         "name": string;
         "onValueChanged"?: (event: FormFieldCustomEvent<{ name: string; value: string; valid: boolean }>) => void;
+        "options"?: { value: string; label: string }[];
         "pattern"?: string;
         "placeholder"?: string;
         "required"?: boolean;

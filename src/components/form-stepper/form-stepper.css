@@ -1,10 +1,29 @@
 :host {
   display: block;
+  position: relative; /* Allows positioning of the nav-buttons */
+  height: 100vh; /* Full viewport height for central alignment */
 }
 
 .form-stepper {
   display: flex;
-  justify-content: center;
-  gap: 10rem;
-  box-sizing: border-box;
+  justify-content: center; /* Center horizontally */
+  gap: 5rem; /* Space between stepper-status and form */
+  background-color: red;
+  padding: 5rem;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stepper-status {
+  flex: 0 0 auto; /* Prevents the stepper from growing */
+  display: flex;
+  flex-direction: column; /* Vertical alignment for steps */
+  gap: 1rem;
+}
+
+.form {
+  flex: 1; /* Allow the form to grow and take available space */
+  display: flex;
+  flex-direction: column;
 }
