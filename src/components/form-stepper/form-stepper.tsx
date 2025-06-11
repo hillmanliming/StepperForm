@@ -16,6 +16,7 @@ export class FormStepper {
     this.currentStep = formDataStore.getCurrentStep();
   }
 
+  //dispatch nodig? stencil event gebruiken
   goToStep(step: number) {
     this.currentStep = step;
     formDataStore.setCurrentStep(step); // Update the global store
@@ -38,6 +39,7 @@ export class FormStepper {
   }
 
   private isCurrentStepValid(): boolean {
+    // Define the required fields for each step, voor niet required fields return true
     const stepFieldsMap = {
       0: ['Naam', 'Email'],
       1: ['Mobiele nummer', 'Werkervaring'],
@@ -129,14 +131,14 @@ export class FormStepper {
               error="Selecteer alstublieft een vervoersmiddel."
               options={[
                 { value: '0', label: '----- Selecteer optie -----' },
-                { value: 'OV', label: 'Openbaar vervoer' },
+                { value: 'Openbaar vervoer', label: 'Openbaar vervoer' },
                 { value: 'Eigen vervoer', label: 'Eigen vervoer' },
               ]}
             ></form-field>
           </form-step>
-          <form-step step={3}>
+          <form-step step={3} class={this.currentStep === 3 ? 'summary' : ''}>
             <p>
-              <strong>Samenvatting:</strong>
+              <strong>Samenvatting</strong>
             </p>
             <ul>
               {Object.entries(this.formData).map(([key, value]) => (

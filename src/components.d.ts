@@ -16,7 +16,13 @@ export namespace Components {
         "pattern"?: string;
         "placeholder"?: string;
         "required"?: boolean;
+        /**
+          * @default 'text'
+         */
         "type": string;
+        /**
+          * @default ''
+         */
         "value"?: string;
     }
     interface FormNavigation {
@@ -99,7 +105,13 @@ declare namespace LocalJSX {
         "pattern"?: string;
         "placeholder"?: string;
         "required"?: boolean;
+        /**
+          * @default 'text'
+         */
         "type"?: string;
+        /**
+          * @default ''
+         */
         "value"?: string;
     }
     interface FormNavigation {

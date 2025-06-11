@@ -2,7 +2,8 @@ import { createStore } from '@stencil/store';
 
 const { state, onChange } = createStore({
   data: {} as { [key: string]: string },
-  stepStatus: [] as ('inactive' | 'active' | 'completed')[], // Track step statuses
+  stepStatus: [] as ('inactive' | 'active' | 'completed')[], // Track step statuses MAKE IT A TYPE
+
   currentStep: 0, // Add currentStep to the global store
 });
 
