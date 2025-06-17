@@ -7,39 +7,37 @@ import { formDataStore } from '../../store/store-form-data';
   shadow: true,
 })
 export class FormStepper {
-  @State() currentStep: number = 0;
-  @State() validationStatus: { [key: string]: boolean } = {};
-  @State() formData: { [key: string]: string } = {};
+  @State() currentStep: number = 0; // Huidige stap
+  @State() validationStatus: { [key: string]: boolean } = {}; // Validatiestatus van velden
+  @State() formData: { [key: string]: string } = {}; // Gegevens van het formulier
 
   componentWillLoad() {
-    // Initialize currentStep from the global store
-    this.currentStep = formDataStore.getCurrentStep();
+    this.currentStep = formDataStore.getCurrentStep(); // Haal de huidige stap op uit de store
   }
 
-  //dispatch nodig? stencil event gebruiken
+  // Navigeer naar een andere stap
   goToStep(step: number) {
     this.currentStep = step;
-    formDataStore.setCurrentStep(step); // Update the global store
-    window.dispatchEvent(new CustomEvent('updateStep', { detail: step }));
+    formDataStore.setCurrentStep(step); // Werk de store bij
+    window.dispatchEvent(new CustomEvent('updateStep', { detail: step })); // Informeer andere componenten ||| is dispatch nodig?
   }
 
+  // Luister naar wijzigingen in veldwaarden
   @Listen('valueChanged')
   handleFieldChange(event: CustomEvent<{ name: string; valid: boolean; value?: string }>) {
     const { name, valid, value } = event.detail;
-
     this.validationStatus = { ...this.validationStatus, [name]: valid && (!value || value !== '0') };
-    console.log('Validation Status:', this.validationStatus);
   }
 
   @Listen('valueChanged')
   handleValueChanged(event: CustomEvent<{ name: string; value: string }>) {
     const { name, value } = event.detail;
-    formDataStore.setField(name, value);
-    this.formData = formDataStore.getAllFields();
+    formDataStore.setField(name, value); // Sla de waarde op in de store
+    this.formData = formDataStore.getAllFields(); // Werk de lokale data bij
   }
 
+  // Controleer of de huidige stap geldig is
   private isCurrentStepValid(): boolean {
-    // Define the required fields for each step, voor niet required fields return true, don't have to be added
     const stepFieldsMap = {
       0: ['Naam', 'Email'],
       1: ['Mobiele nummer', 'Werkervaring'],
@@ -53,8 +51,9 @@ export class FormStepper {
   render() {
     return (
       <div class="form-stepper">
-        <stepper-status></stepper-status>
+        <stepper-status></stepper-status> {/* Toon de status van de stappen */}
         <form class="form">
+          {/* Render de stappen */}
           <form-step step={0}>
             <form-field
               name="Naam"
@@ -136,8 +135,9 @@ export class FormStepper {
               ]}
             ></form-field>
           </form-step>
+          {/* Samenvatting stap */}
           <form-step step={3} class={this.currentStep === 3 ? 'summary' : ''}>
-            <strong>Samenvatting</strong>
+            <h3>Samenvatting</h3>
             <ul>
               {Object.entries(this.formData).map(([key, value]) => (
                 <li>

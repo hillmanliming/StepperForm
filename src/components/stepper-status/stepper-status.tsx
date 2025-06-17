@@ -7,30 +7,29 @@ import { state, onChange } from '../../store/store-form-data';
   shadow: true,
 })
 export class StepperStatus {
-  @State() currentStep: number;
+  @State() currentStep: number; // Huidige stap
 
   componentWillLoad() {
-    // Initialize currentStep from the global store
-    this.currentStep = state.currentStep;
+    this.currentStep = state.currentStep; // Haal de huidige stap op uit de store
 
-    // Listen for changes to currentStep in the global store
+    // Luister naar wijzigingen in de huidige stap
     onChange('currentStep', newStep => {
       this.currentStep = newStep;
     });
   }
 
   render() {
-    const steps = [1, 2, 3, 4]; // Define the steps
-    const stepLabels = ['Persoonlijke informatie', 'Relevante gegevens', 'Reizen en vervoer', 'Overzicht']; // Define labels for each step
+    const steps = [1, 2, 3, 4]; // Definieer de stappen
+    const stepLabels = ['Persoonlijke informatie', 'Relevante gegevens', 'Reizen en vervoer', 'Overzicht']; // Labels voor de stappen
 
     return (
       <div class="stepper-status">
         {steps.map((step, index) => {
           let stepClass = 'inactive';
           if (index < this.currentStep) {
-            stepClass = 'completed'; // Mark previous steps as complete
+            stepClass = 'completed'; // Markeer eerdere stappen als voltooid
           } else if (index === this.currentStep) {
-            stepClass = 'active'; // Mark the current step as active
+            stepClass = 'active'; // Markeer de huidige stap als actief
           }
 
           return (

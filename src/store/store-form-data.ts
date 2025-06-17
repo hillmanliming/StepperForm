@@ -1,38 +1,50 @@
 import { createStore } from '@stencil/store';
 
-const { state, onChange } = createStore({
-  data: {} as { [key: string]: string },
-  stepStatus: [] as ('inactive' | 'active' | 'completed')[], // Track step statuses MAKE IT A TYPE
+// Type-definitie voor de status van elke stap in het formulier
+interface StepStatusMap {
+  step: number;
+  status: 'inactive' | 'active' | 'completed';
+}
 
-  currentStep: 0, // Add currentStep to the global store
+// Maak een centrale store aan om formuliergegevens en stapstatussen bij te houden
+const { state, onChange } = createStore({
+  data: {} as { [key: string]: string }, // Opslag voor alle formulierinvoervelden
+  stepStatus: [] as StepStatusMap[], // Opslag voor de status van elke stap
+  currentStep: 0, // Huidige actieve stap
 });
 
-export { state, onChange }; // Export both state and onChange
+// Exporteer de state en onChange listener zodat andere componenten deze kunnen gebruiken
+export { state, onChange };
 
 export const formDataStore = {
+  // Stel een waarde in voor een specifiek formulierveld
   setField(name: string, value: string) {
     state.data[name] = value;
   },
 
+  // Haal alle ingevulde formulierwaarden op
   getAllFields() {
     return state.data;
   },
 
+  // Werk de status van een stap bij (bijv. actief of voltooid)
   updateStepStatus(step: number, status: 'inactive' | 'active' | 'completed') {
-    const updatedStatus = [...state.stepStatus];
-    updatedStatus[step] = status;
-    state.stepStatus = updatedStatus; // Trigger reactivity
+    const index = state.stepStatus.findIndex(s => s.step === step);
+    state.stepStatus = index > -1 ? state.stepStatus.map(s => (s.step === step ? { ...s, status } : s)) : [...state.stepStatus, { step, status }];
   },
 
+  // Haal de status van alle stappen op
   getStepStatus() {
     return state.stepStatus;
   },
 
+  // Zet de huidige actieve stap
   setCurrentStep(step: number) {
-    state.currentStep = step; // Update the current step
+    state.currentStep = step;
   },
 
+  // Haal de huidige actieve stap op
   getCurrentStep() {
-    return state.currentStep; // Retrieve the current step
+    return state.currentStep;
   },
 };
