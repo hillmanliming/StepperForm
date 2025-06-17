@@ -8,7 +8,7 @@ import { formDataStore } from '../../store/store-form-data';
 })
 export class FormStep {
   @Prop() step: number;
-  @State() currentStep: number = 0;
+  @State() currentStep: number = 0; //  should be set back to 0
   @Element() el: HTMLElement;
 
   @Listen('updateStep', { target: 'window' })

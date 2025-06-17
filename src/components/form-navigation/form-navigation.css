@@ -1,32 +1,70 @@
 :host {
   display: block;
+  position: fixed; /* Fix the navigation bar to the bottom of the viewport */
+  bottom: 0; /* Align to the bottom */
+  left: 0; /* Align to the left */
+  width: 100%; /* Make the navigation bar span the full width */
+  background-color: white;
+  z-index: 10; /* Ensure it stays above other content */
 }
 
 .nav-buttons {
   display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-  margin-top: auto;
+  justify-content: flex-end; /* Align buttons to the right */
+  gap: 1rem; /* Add spacing between buttons */
+  padding: 2rem; /* Add padding around the buttons */
+  margin: 0 auto; /* Center the buttons container horizontally */
 }
 
-button {
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  background-color: #f8f9fa;
-  color: #333;
+.primary-button,
+.sec-button {
+  min-width: 7rem;
+  padding: 1rem;
+  font-size: 1.125rem;
+  line-height: 1.625rem;
   cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  border: none;
+  outline: none;
 }
 
-button:hover {
-  background-color: #e9ecef;
-  border-color: #bbb;
+.primary-button:focus,
+.sec-button:focus {
+  border: 1px solid #007bc7;
+  border-radius: 0;
 }
 
-button:disabled {
-  background-color: #f0f0f0;
-  border-color: #ddd;
-  color: #aaa;
-  cursor: not-allowed;
+.primary-button {
+  background-color: #007bc7;
+  color: white;
+}
+
+.primary-button:hover {
+  background-color: #00729f;
+}
+
+.primary-button:active {
+  background-color: #004977;
+}
+.primary-button:disabled {
+  background-color: #e6e6e6;
+  color: #999999;
+  cursor: default;
+}
+
+.sec-button {
+  background-color: #cce4f3;
+  color: black;
+}
+
+.sec-button:hover {
+  background-color: #99cae8;
+}
+
+.sec-button:active {
+  background-color: #007bc7;
+}
+.sec-button:disabled {
+  background-color: #f3f3f3;
+  color: #999999;
+  cursor: default;
 }

@@ -70,7 +70,8 @@ export class FormField {
           />
         )}
         <p class="error" style={{ visibility: !this.valid && this.touched ? 'visible' : 'hidden' }}>
-          {this.error}
+          <img src="/assets/Notification-icons.svg" alt="" class="error-icon" />
+          <span>{this.error}</span>
         </p>
       </div>
     );

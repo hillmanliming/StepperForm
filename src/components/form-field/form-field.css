@@ -1,48 +1,64 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
 .form-field {
   display: flex;
   flex-direction: column;
+  margin-bottom: 1rem;
 }
 
 label {
-  font-size: 1rem;
+  font-size: 1.125rem;
+  line-height: 1.625rem;
   font-weight: 500;
-  color: #333;
-  margin-bottom: 1rem; /* Add 1rem space between the label and the input field */
 }
 
 .required {
-  color: #d9534f;
+  color: #e73629;
   margin-left: 0.25rem;
 }
 
 input,
 select {
-  padding: 0.75rem;
   font-size: 1rem;
-  border: 1px solid #ccc;
-  width: 100%;
+  border: 1px solid #999999;
+  width: 18rem;
+  height: 44px;
   box-sizing: border-box;
   appearance: none; /* Remove default styling for select */
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  margin: 0.25rem 0 0.25rem 0;
+  outline: none;
+}
+
+input {
+  padding: 0.5rem 1rem; /* Top, Right, Bottom, Left padding */
+}
+
+select {
+  padding: 0rem 1rem; /* Top, Right, Bottom, Left padding */
 }
 
 input:focus,
 select:focus {
-  border-color: #027bc7;
-  box-shadow: 0 0 4px rgba(2, 123, 199, 0.25);
-  outline: none;
+  border: 1px solid #007bc7;
+  border-radius: 0;
 }
 
-input.invalid,
-select.invalid {
-  border-color: #d9534f;
+input:hover,
+select:hover {
+  border-color: #007bc7;
 }
 
 .error {
   font-size: 0.875rem;
-  color: #d9534f;
+  line-height: 1.125rem;
   visibility: hidden;
-  margin-top: 0.25rem; /* No gap between the input field and the error message */
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 }
 
 input.invalid + .error,

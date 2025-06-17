@@ -1,47 +1,70 @@
 :host {
   display: block;
 }
+@font-face {
+  font-family: 'ROsanswebtextregular';
+  src: url('../../assets/ROsanswebtextbold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
 
 .stepper-status {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Stack steps vertically */
   justify-content: center;
-  align-items: center;
-  text-align: center;
-  gap: 2rem;
+  gap: 2rem; /* Space between step containers */
+  background-color: white;
+  padding: 2rem;
+}
+
+.step-container {
+  display: flex;
+  flex-direction: row; /* Align step circle and label horizontally */
+  align-items: center; /* Center items vertically */
+  gap: 1rem; /* Space between the circle and the label */
 }
 
 .active,
 .inactive,
 .completed {
-  font-size: 1.3rem;
-  line-height: 1;
-  width: 2.5rem;
-  height: 2.5rem;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  aspect-ratio: 1;
+  width: 2rem;
+  height: 2rem;
   text-align: center;
   box-sizing: border-box;
   aspect-ratio: 1;
   border-radius: 50%;
-  padding: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.step-label {
+  font-size: 1rem;
+}
+
+.current-label {
+  font-weight: bolder;
+}
+
 .active {
   color: rgb(255, 255, 255);
-  background-color: #027bc7;
-  border: 3px solid #027bc7;
+  background-color: #007bc7;
+  border: 2px solid #007bc7;
+
+  font-weight: bold;
 }
 
 .inactive {
-  border: 3px solid black;
+  border: 2px solid black;
 }
 
 .completed {
   color: white;
-  background-color: green;
-  border: 3px solid green;
+  background-color: #39870b;
+  border: 2px solid #39870b;
 }
 
 .completed::before {

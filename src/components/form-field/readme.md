@@ -7,18 +7,19 @@
 
 ## Properties
 
-| Property            | Attribute     | Description | Type      | Default     |
-| ------------------- | ------------- | ----------- | --------- | ----------- |
-| `error`             | `error`       |             | `string`  | `undefined` |
-| `label`             | `label`       |             | `string`  | `undefined` |
-| `maxlength`         | `maxlength`   |             | `number`  | `undefined` |
-| `minlength`         | `minlength`   |             | `number`  | `undefined` |
-| `name` _(required)_ | `name`        |             | `string`  | `undefined` |
-| `pattern`           | `pattern`     |             | `string`  | `undefined` |
-| `placeholder`       | `placeholder` |             | `string`  | `undefined` |
-| `required`          | `required`    |             | `boolean` | `undefined` |
-| `type`              | `type`        |             | `string`  | `'text'`    |
-| `value`             | `value`       |             | `string`  | `''`        |
+| Property            | Attribute     | Description | Type                                  | Default     |
+| ------------------- | ------------- | ----------- | ------------------------------------- | ----------- |
+| `error`             | `error`       |             | `string`                              | `undefined` |
+| `label`             | `label`       |             | `string`                              | `undefined` |
+| `maxlength`         | `maxlength`   |             | `number`                              | `undefined` |
+| `minlength`         | `minlength`   |             | `number`                              | `undefined` |
+| `name` _(required)_ | `name`        |             | `string`                              | `undefined` |
+| `options`           | `options`     |             | `{ value: string; label: string; }[]` | `undefined` |
+| `pattern`           | `pattern`     |             | `string`                              | `undefined` |
+| `placeholder`       | `placeholder` |             | `string`                              | `undefined` |
+| `required`          | `required`    |             | `boolean`                             | `undefined` |
+| `type`              | `type`        |             | `string`                              | `'text'`    |
+| `value`             | `value`       |             | `string`                              | `''`        |
 
 
 ## Events

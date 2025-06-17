@@ -1,18 +1,31 @@
 :host {
   display: block;
   position: relative; /* Allows positioning of the nav-buttons */
-  height: 100vh; /* Full viewport height for central alignment */
+  box-sizing: border-box; /* Ensures padding is included in height */
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --background: #f9f9f9;
+  --blue: #007bc7;
+  --input-border: #000000;
+  --sublabel: #999999;
+  --red: #e73629;
+  --pri-btn-hover: #00729f;
+  --pri-btn-active: #004977;
+  --pri-btn-disabled: #e6e6e6; /* text: sublabel color */
+  --sec-btn-default: #cce4f3;
+  --sec-btn-hover: #99cae8;
+  --sec-btn-active: #007bc7;
+  --sec-btn-disabled: #f3f3f3; /* text: sublabel color */
 }
 
 .form-stepper {
   display: flex;
-  justify-content: center; /* Center horizontally */
-  gap: 5rem; /* Space between stepper-status and form */
-  background-color: red;
-  padding: 5rem;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  gap: 4rem; /* Space between stepper-status and form */
+  padding: 2rem;
   min-height: calc(100vh - 11rem); /* Full height minus padding */
 }
 
@@ -23,31 +36,22 @@
   gap: 1rem;
 }
 
-.form {
-  flex: 1; /* Allow the form to grow and take available space */
-  display: flex;
-  flex-direction: column;
-}
-
-form-navigation {
-  display: flex;
-  justify-content: flex-end; /* Align buttons to the right */
-  gap: 1rem; /* Space between buttons */
-  margin-top: auto; /* Pushes the buttons to the bottom of the form */
-}
-
 .summary {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1rem;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 2rem;
+  background-color: white;
+}
+.summary ul {
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
 }
 
 .summary li {
   list-style: none; /* Remove default list styling */
-  padding: 1rem;
-  border-bottom: 1px solid #ddd; /* Add a separator between items */
+  padding: 0.25rem 0; /* Add some padding for spacing */
+}
+
+.summary-item {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 2fr; /* Two columns: label and value */
 }

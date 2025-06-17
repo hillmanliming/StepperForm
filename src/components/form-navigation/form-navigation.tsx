@@ -19,11 +19,11 @@ export class FormNavigation {
   render() {
     return (
       <div class="nav-buttons">
-        <button type="button" onClick={() => this.goToStep(this.currentStep - 1)} disabled={this.currentStep === 0}>
-          Back
+        <button class="sec-button" type="button" onClick={() => this.goToStep(this.currentStep - 1)} disabled={this.currentStep === 0}>
+          Vorige
         </button>
-        <button type="button" onClick={() => this.goToStep(this.currentStep + 1)} disabled={this.currentStep === this.maxStep || this.disableNext}>
-          Next
+        <button class="primary-button" type="button" onClick={() => this.goToStep(this.currentStep + 1)} disabled={this.currentStep === this.maxStep || this.disableNext}>
+          Volgende
         </button>
       </div>
     );

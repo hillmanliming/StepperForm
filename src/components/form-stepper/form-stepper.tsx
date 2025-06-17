@@ -39,7 +39,7 @@ export class FormStepper {
   }
 
   private isCurrentStepValid(): boolean {
-    // Define the required fields for each step, voor niet required fields return true
+    // Define the required fields for each step, voor niet required fields return true, don't have to be added
     const stepFieldsMap = {
       0: ['Naam', 'Email'],
       1: ['Mobiele nummer', 'Werkervaring'],
@@ -61,7 +61,7 @@ export class FormStepper {
               label="Voor- en achternaam"
               type="text"
               value=""
-              placeholder="John Doe"
+              placeholder="Voor- en achternaam"
               required
               aria-required="true"
               error="Voer alstublieft een geldige naam in."
@@ -73,7 +73,7 @@ export class FormStepper {
               label="Email"
               type="email"
               value=""
-              placeholder="abc@def.nl"
+              placeholder="Email"
               required
               aria-required="true"
               error="Voer alstublieft een geldig emailadres in."
@@ -88,7 +88,7 @@ export class FormStepper {
               pattern="[0-9]+"
               type="tel"
               value=""
-              placeholder="0612345678"
+              placeholder="Mobiele nummer"
               required
               aria-required="true"
               error="Voer alstublieft een geldig mobiel nummer in."
@@ -102,7 +102,7 @@ export class FormStepper {
               pattern="[0-9]+"
               type="text"
               value=""
-              placeholder="1"
+              placeholder="Aantal jaar werkervaring"
               required
               aria-required="true"
               error="Voer alstublieft een geldig aantal jaren in."
@@ -116,7 +116,7 @@ export class FormStepper {
               label="Woonplaats"
               type="text"
               value=""
-              placeholder="Amsterdam"
+              placeholder="Woonplaats"
               required
               aria-required="true"
               error="Voer alstublieft een geldige woonplaats in."
@@ -137,24 +137,19 @@ export class FormStepper {
             ></form-field>
           </form-step>
           <form-step step={3} class={this.currentStep === 3 ? 'summary' : ''}>
-            <p>
-              <strong>Samenvatting</strong>
-            </p>
+            <strong>Samenvatting</strong>
             <ul>
               {Object.entries(this.formData).map(([key, value]) => (
                 <li>
-                  <strong>{key}:</strong> {value}
+                  <div class="summary-item">
+                    <strong>{key}:</strong> {value}
+                  </div>
                 </li>
               ))}
             </ul>
           </form-step>
-          <form-navigation
-            currentStep={this.currentStep}
-            maxStep={3}
-            navigateStep={(step: number) => this.goToStep(step)}
-            disableNext={!this.isCurrentStepValid()}
-          ></form-navigation>
         </form>
+        <form-navigation currentStep={this.currentStep} maxStep={3} navigateStep={(step: number) => this.goToStep(step)} disableNext={!this.isCurrentStepValid()}></form-navigation>
       </div>
     );
   }
