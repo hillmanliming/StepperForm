@@ -23,12 +23,6 @@ export class FormStepper {
   handleFieldChange(event: CustomEvent<{ name: string; valid: boolean; value?: string }>) {
     const { name, valid, value } = event.detail;
     this.validationStatus = { ...this.validationStatus, [name]: valid && (!value || value !== '0') };
-  }
-
-  @Listen('valueChanged')
-  handleValueChanged(event: CustomEvent<{ name: string; value: string }>) {
-    const { name, value } = event.detail;
-    formDataStore.setField(name, value); // Sla de waarde op in de store
     this.formData = formDataStore.getAllFields(); // Werk de lokale data bij
   }
 

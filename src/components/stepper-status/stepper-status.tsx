@@ -10,25 +10,27 @@ export class StepperStatus {
   @State() currentStep: number; // Huidige stap
 
   componentWillLoad() {
-    // Haal de huidige stap op uit de store
+    // Haal de huidige stap op uit de store en luister naar wijzigingen
     this.currentStep = formDataStore.getCurrentStep();
-
-    // Luister naar wijzigingen in de huidige stap (indien nodig)
-    // Als je reactieve updates wilt, kun je een eventlistener of observer toevoegen
+    formDataStore.setCurrentStep = (step: number) => {
+      this.currentStep = step;
+    };
   }
 
   render() {
-    const steps = [1, 2, 3, 4]; // Definieer de stappen
-    const stepLabels = ['Persoonlijke informatie', 'Relevante gegevens', 'Reizen en vervoer', 'Overzicht']; // Labels voor de stappen
+    // Definieer de stappen en labels
+    const steps = [1, 2, 3, 4];
+    const stepLabels = ['Persoonlijke informatie', 'Relevante gegevens', 'Reizen en vervoer', 'Overzicht'];
 
     return (
       <div class="stepper-status">
         {steps.map((step, index) => {
+          // Bepaal de CSS-klasse op basis van de status van de stap
           let stepClass = 'inactive';
           if (index < this.currentStep) {
-            stepClass = 'completed'; // Markeer eerdere stappen als voltooid
+            stepClass = 'completed'; // Eerdere stappen zijn voltooid
           } else if (index === this.currentStep) {
-            stepClass = 'active'; // Markeer de huidige stap als actief
+            stepClass = 'active'; // Huidige stap is actief
           }
 
           return (

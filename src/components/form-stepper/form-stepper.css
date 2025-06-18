@@ -46,6 +46,7 @@ header {
   gap: 5%;
   padding: 2rem;
 }
+
 .stepper-status {
   flex: 0 0 auto; /* Prevents the stepper from growing */
   display: flex;
