@@ -11,10 +11,6 @@ export class FormStepper {
   @State() validationStatus: { [key: string]: boolean } = {}; // Validatiestatus van velden
   @State() formData: { [key: string]: string } = {}; // Gegevens van het formulier
 
-  componentWillLoad() {
-    this.currentStep = formDataStore.getCurrentStep(); // Haal de huidige stap op uit de store
-  }
-
   // Navigeer naar een andere stap
   goToStep(step: number) {
     this.currentStep = step;

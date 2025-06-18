@@ -10,15 +10,13 @@ interface StepStatusMap {
 }
 
 // Maak een centrale store aan om formuliergegevens en stapstatussen bij te houden
-const { state, onChange } = createStore({
+const { state } = createStore({
   data: {} as { [key: string]: string }, // Opslag voor alle formulierinvoervelden
   stepStatus: [] as StepStatusMap[], // Opslag voor de status van elke stap
   currentStep: 0, // Huidige actieve stap
 });
 
-// Exporteer de state en onChange listener zodat andere componenten deze kunnen gebruiken
-export { state, onChange };
-
+// Functies om de store te manipuleren
 export const formDataStore = {
   // Stel een waarde in voor een specifiek formulierveld
   setField(name: string, value: string) {
@@ -26,11 +24,11 @@ export const formDataStore = {
   },
 
   // Haal alle ingevulde formulierwaarden op
-  getAllFields() {
+  getAllFields(): { [key: string]: string } {
     return state.data;
   },
 
-  // Werk de status van een stap bij, actief, voltooid)
+  // Werk de status van een stap bij (bijv. actief, voltooid)
   updateStepStatus(step: number, status: StepStatus) {
     const index = state.stepStatus.findIndex(s => s.step === step);
     if (index > -1) {
@@ -40,8 +38,13 @@ export const formDataStore = {
     }
   },
 
+  // Haal de status van een specifieke stap op
+  getStepStatus(step: number): StepStatus | undefined {
+    return state.stepStatus.find(s => s.step === step)?.status;
+  },
+
   // Haal de status van alle stappen op
-  getStepStatus() {
+  getAllStepStatus(): StepStatusMap[] {
     return state.stepStatus;
   },
 
@@ -51,7 +54,7 @@ export const formDataStore = {
   },
 
   // Haal de huidige actieve stap op
-  getCurrentStep() {
+  getCurrentStep(): number {
     return state.currentStep;
   },
 };

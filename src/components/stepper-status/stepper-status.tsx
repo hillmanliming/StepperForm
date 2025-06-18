@@ -1,5 +1,5 @@
 import { Component, h, State } from '@stencil/core';
-import { state, onChange } from '../../store/store-form-data';
+import { formDataStore } from '../../store/store-form-data';
 
 @Component({
   tag: 'stepper-status',
@@ -10,12 +10,11 @@ export class StepperStatus {
   @State() currentStep: number; // Huidige stap
 
   componentWillLoad() {
-    this.currentStep = state.currentStep; // Haal de huidige stap op uit de store
+    // Haal de huidige stap op uit de store
+    this.currentStep = formDataStore.getCurrentStep();
 
-    // Luister naar wijzigingen in de huidige stap
-    onChange('currentStep', newStep => {
-      this.currentStep = newStep;
-    });
+    // Luister naar wijzigingen in de huidige stap (indien nodig)
+    // Als je reactieve updates wilt, kun je een eventlistener of observer toevoegen
   }
 
   render() {
