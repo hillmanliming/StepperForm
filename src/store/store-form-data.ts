@@ -1,9 +1,12 @@
 import { createStore } from '@stencil/store';
 
+// Type-definitie voor de status van een stap
+type StepStatus = 'inactive' | 'active' | 'completed';
+
 // Type-definitie voor de status van elke stap in het formulier
 interface StepStatusMap {
   step: number;
-  status: 'inactive' | 'active' | 'completed';
+  status: StepStatus;
 }
 
 // Maak een centrale store aan om formuliergegevens en stapstatussen bij te houden
@@ -27,10 +30,14 @@ export const formDataStore = {
     return state.data;
   },
 
-  // Werk de status van een stap bij (bijv. actief of voltooid)
-  updateStepStatus(step: number, status: 'inactive' | 'active' | 'completed') {
+  // Werk de status van een stap bij, actief, voltooid)
+  updateStepStatus(step: number, status: StepStatus) {
     const index = state.stepStatus.findIndex(s => s.step === step);
-    state.stepStatus = index > -1 ? state.stepStatus.map(s => (s.step === step ? { ...s, status } : s)) : [...state.stepStatus, { step, status }];
+    if (index > -1) {
+      state.stepStatus = state.stepStatus.map(s => (s.step === step ? { ...s, status } : s));
+    } else {
+      state.stepStatus = [...state.stepStatus, { step, status }];
+    }
   },
 
   // Haal de status van alle stappen op

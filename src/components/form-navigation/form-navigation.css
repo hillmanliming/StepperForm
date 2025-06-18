@@ -1,20 +1,18 @@
 :host {
   display: block;
-  position: fixed; /* Fix the navigation bar to the bottom of the viewport */
-  bottom: 0; /* Align to the bottom */
-  left: 0; /* Align to the left */
-  width: 100%; /* Make the navigation bar span the full width */
-  background-color: white;
-  z-index: 10; /* Ensure it stays above other content */
+  position: fixed; /* Zorg dat het altijd op dezelfde plek blijft */
+  bottom: 0; /* Plaats het aan de onderkant van het scherm */
+  left: 0; /* Zorg dat het begint aan de linkerzijde */
+  width: 100%; /* Laat het de volledige breedte van het scherm innemen */
+  z-index: 10; /* Zorg dat het boven andere elementen blijft */
 }
 
 .nav-buttons {
   display: flex;
-  justify-content: flex-end; /* Align buttons to the right */
-  gap: 1rem; /* Add spacing between buttons */
-  padding: 2rem; /* Add padding around the buttons */
-  margin: 0 auto; /* Center the buttons container horizontally */
-  outline: none;
+  justify-content: flex-end; /* Knoppen rechts uitlijnen */
+  gap: 1rem; /* Ruimte tussen de knoppen */
+  padding: 2rem; /* Ruimte rondom de knoppen */
+  background-color: white; /* Optioneel: achtergrondkleur */
 }
 
 .primary-button,

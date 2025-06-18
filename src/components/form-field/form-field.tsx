@@ -51,7 +51,7 @@ export class FormField {
         {this.label && (
           <label htmlFor={this.name}>
             {this.label}
-            {this.required && <span class="required">*</span>}
+            {this.required}
           </label>
         )}
         {/* Render een select of input afhankelijk van het type */}

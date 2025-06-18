@@ -4,6 +4,7 @@
   box-sizing: border-box; /* Ensures padding is included in height */
   margin: 0;
   padding: 0;
+  height: 100vh;
 }
 
 :root {
@@ -21,19 +22,35 @@
   --sec-btn-disabled: #f3f3f3; /* text: sublabel color */
 }
 
-.form-stepper {
-  display: flex;
-  justify-content: center;
-  gap: 4rem; /* Space between stepper-status and form */
-  padding: 2rem;
-  min-height: calc(100vh - 11rem); /* Full height minus padding */
+h1,
+h2 {
+  margin: 0;
 }
 
+header {
+  background-color: white;
+  padding: 2rem;
+}
+
+.form-stepper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  height: 100%;
+}
+
+.container {
+  justify-self: start;
+  display: flex;
+  justify-content: center;
+  gap: 5%;
+  padding: 2rem;
+}
 .stepper-status {
   flex: 0 0 auto; /* Prevents the stepper from growing */
   display: flex;
   flex-direction: column; /* Vertical alignment for steps */
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .summary {
