@@ -17,16 +17,23 @@ export class FormNavigation {
     this.navigateStep?.(step); // Roept de functie aan die door de parent is doorgegeven
   }
 
+  // Verwerk het versturen van het formulier
+  private handleSubmit() {
+    alert('Formulier is verstuurd!');
+  }
+
   render() {
+    const isLastStep = this.currentStep === this.maxStep;
+
     return (
       <div class="nav-buttons">
         {/* Vorige knop */}
         <button class="sec-button" type="button" onClick={() => this.goToStep(this.currentStep - 1)} disabled={this.currentStep === 0}>
           Vorige
         </button>
-        {/* Volgende knop */}
-        <button class="primary-button" type="button" onClick={() => this.goToStep(this.currentStep + 1)} disabled={this.currentStep === this.maxStep || this.disableNext}>
-          Volgende
+        {/* Volgende of Versturen knop */}
+        <button class="primary-button" type="button" onClick={() => (isLastStep ? this.handleSubmit() : this.goToStep(this.currentStep + 1))} disabled={this.disableNext}>
+          {isLastStep ? 'Versturen' : 'Volgende'}
         </button>
       </div>
     );

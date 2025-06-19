@@ -18,9 +18,10 @@ export class StepperStatus {
   }
 
   render() {
-    // Definieer de stappen en labels
+    // Definieer de stappen, labels en tijden
     const steps = [1, 2, 3, 4];
     const stepLabels = ['Persoonlijke informatie', 'Relevante gegevens', 'Reizen en vervoer', 'Overzicht'];
+    const stepTimes = ['<1 min', '<1 min', '<1 min', '']; // Laatste stap heeft geen tijd
 
     return (
       <div class="stepper-status">
@@ -36,7 +37,10 @@ export class StepperStatus {
           return (
             <div class="step-container">
               <div class={stepClass}>{stepClass === 'completed' ? '' : step}</div>
-              <span class={`step-label ${index === this.currentStep ? 'current-label' : ''}`}>{stepLabels[index]}</span>
+              <div class="step-info">
+                <span class={`step-label ${index === this.currentStep ? 'current-label' : ''}`}>{stepLabels[index]}</span>
+                {stepTimes[index] && <span class="time-indication">{stepTimes[index]}</span>} {/* Render alleen als er een tijd is */}
+              </div>
             </div>
           );
         })}

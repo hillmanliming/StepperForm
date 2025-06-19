@@ -41,6 +41,15 @@
   justify-content: center;
 }
 
+.step-info {
+  display: flex;
+  flex-direction: column; /* Stack step info vertically */
+}
+
+.time-indication {
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+}
 .step-label {
   font-size: 1.125rem;
   line-height: 1.625rem;

@@ -43,7 +43,7 @@ export class FormStepper {
       <div class="form-stepper">
         <header>
           <h1>Form Stepper Component</h1>
-          <h2>Four step stepper</h2>
+          <h2>Algemeen vooronderzoek</h2>
         </header>
         <div class="container">
           <stepper-status></stepper-status> {/* Toon de status van de stappen */}
@@ -137,7 +137,8 @@ export class FormStepper {
                 {Object.entries(this.formData).map(([key, value]) => (
                   <li>
                     <div class="summary-item">
-                      <strong>{key}:</strong> {value}
+                      <strong>{key}:</strong>
+                      <span>{value}</span>
                     </div>
                   </li>
                 ))}

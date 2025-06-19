@@ -2,17 +2,17 @@
   display: block;
   position: fixed; /* Zorg dat het altijd op dezelfde plek blijft */
   bottom: 0; /* Plaats het aan de onderkant van het scherm */
-  left: 0; /* Zorg dat het begint aan de linkerzijde */
+  right: 0; /* Zorg dat het begint aan de linkerzijde */
   width: 100%; /* Laat het de volledige breedte van het scherm innemen */
   z-index: 10; /* Zorg dat het boven andere elementen blijft */
 }
 
 .nav-buttons {
   display: flex;
-  justify-content: flex-end; /* Knoppen rechts uitlijnen */
-  gap: 1rem; /* Ruimte tussen de knoppen */
-  padding: 2rem; /* Ruimte rondom de knoppen */
-  background-color: white; /* Optioneel: achtergrondkleur */
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 2rem 20%;
+  background-color: white;
 }
 
 .primary-button,
@@ -74,4 +74,10 @@
 
   color: #999999;
   cursor: default;
+}
+
+@media screen and (max-width: 768px) {
+  .nav-buttons {
+    padding: 1rem; /* Reduce padding for navigation buttons */
+  }
 }
