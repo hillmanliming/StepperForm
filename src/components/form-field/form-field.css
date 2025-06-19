@@ -41,6 +41,9 @@ select {
   padding: 0rem 1rem; /* Top, Right, Bottom, Left padding */
 }
 
+select:hover {
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
 input:focus,
 select:focus {
   border: 1px solid #007bc7;
