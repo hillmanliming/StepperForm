@@ -24,7 +24,7 @@ const FormNavigation = class {
     render() {
         // Controleer of dit de laatste stap is
         const isLastStep = this.currentStep === this.maxStep;
-        return (h("div", { key: '92a045a9a80346a5d06becc01889f8adcd4e80f6', class: "nav-buttons" }, h("button", { key: '3ad981c5d06e4e1a9fc79e66639078ebc45ab9d3', class: "sec-button", type: "button", onClick: () => this.goToStep(this.currentStep - 1), disabled: this.currentStep === 0 }, "Vorige"), h("button", { key: '8d48ee865589a55af1255c7a4390307a84dcdcd1', class: "primary-button", type: "button", onClick: () => (isLastStep ? this.handleSubmit() : this.goToStep(this.currentStep + 1)), disabled: this.disableNext }, isLastStep ? 'Versturen' : 'Volgende')));
+        return (h("div", { key: '4cd65331339b77d7dc7c5fb1cc2d8b93b8f41480', class: "nav-buttons" }, h("button", { key: 'd79d2faad6859341ca75dfa2554c2b6c535ca899', class: "sec-button", type: "button", onClick: () => this.goToStep(this.currentStep - 1), disabled: this.currentStep === 0 }, "Vorige"), h("button", { key: '9c8533ec6297a6ad0f392cd9d86879e69544d94e', class: "primary-button", type: "button", onClick: () => (isLastStep ? this.handleSubmit() : this.goToStep(this.currentStep + 1)), disabled: this.disableNext }, isLastStep ? 'Versturen' : 'Volgende')));
     }
 };
 FormNavigation.style = formNavigationCss;
