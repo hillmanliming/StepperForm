@@ -1,4 +1,5 @@
 import { Component, h, Prop } from '@stencil/core';
+import { formDataStore } from '../../store/store-form-data';
 
 @Component({
   tag: 'form-navigation',
@@ -6,23 +7,25 @@ import { Component, h, Prop } from '@stencil/core';
   shadow: true,
 })
 export class FormNavigation {
-  @Prop() currentStep: number; // Huidige stap
-  @Prop() maxStep: number; // Maximale stap
-  @Prop() disableNext: boolean; // Of de volgende knop uitgeschakeld moet zijn
+  // Huidige stap (wordt als prop doorgegeven)
+  @Prop() currentStep: number;
+  // Hoogste stapnummer
+  @Prop() maxStep: number;
+  // Of de volgende knop uitgeschakeld moet zijn
+  @Prop() disableNext: boolean;
 
-  @Prop() navigateStep: (step: number) => void; // Functie om naar een andere stap te navigeren
-
-  // Navigeer naar een specifieke stap
+  // Zet de huidige stap in de store
   private goToStep(step: number) {
-    this.navigateStep?.(step); // Roept de functie aan die door de parent is doorgegeven
+    formDataStore.setCurrentStep(step);
   }
 
-  // Verwerk het versturen van het formulier
+  // Handler voor het versturen van het formulier
   private handleSubmit() {
     alert('Formulier is verstuurd!');
   }
 
   render() {
+    // Controleer of dit de laatste stap is
     const isLastStep = this.currentStep === this.maxStep;
 
     return (
@@ -31,7 +34,7 @@ export class FormNavigation {
         <button class="sec-button" type="button" onClick={() => this.goToStep(this.currentStep - 1)} disabled={this.currentStep === 0}>
           Vorige
         </button>
-        {/* Volgende of Versturen knop */}
+        {/* Volgende of versturen knop */}
         <button class="primary-button" type="button" onClick={() => (isLastStep ? this.handleSubmit() : this.goToStep(this.currentStep + 1))} disabled={this.disableNext}>
           {isLastStep ? 'Versturen' : 'Volgende'}
         </button>

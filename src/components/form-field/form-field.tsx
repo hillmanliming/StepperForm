@@ -6,25 +6,38 @@ import { Component, Prop, h, Event, EventEmitter, State } from '@stencil/core';
   shadow: true,
 })
 export class FormField {
-  // Props voor configuratie van het formulierveld (bijv. label, type, validatie)
+  // Label voor het veld
   @Prop() label?: string;
-  @Prop() name!: string; // Naam van het veld (verplicht)
-  @Prop() type: string = 'text'; // Type veld (bijv. tekst of select)
-  @Prop() value?: string = ''; // Standaardwaarde
-  @Prop() required?: boolean; // Of het veld verplicht is
-  @Prop() placeholder?: string; // Placeholder tekst
-  @Prop() minlength?: number; // Minimale lengte
-  @Prop() maxlength?: number; // Maximale lengte
-  @Prop() pattern?: string; // Validatiepatroon
-  @Prop() error: string; // Foutmelding
-  @Prop() options?: { value: string; label: string }[]; // Opties voor select-velden
+  // Naam van het veld (verplicht)
+  @Prop() name!: string;
+  // Type veld (bijv. tekst of select)
+  @Prop() type: string = 'text';
+  // Standaardwaarde
+  @Prop() value?: string = '';
+  // Of het veld verplicht is
+  @Prop() required?: boolean;
+  // Placeholder tekst
+  @Prop() placeholder?: string;
+  // Minimale lengte
+  @Prop() minlength?: number;
+  // Maximale lengte
+  @Prop() maxlength?: number;
+  // Validatiepatroon
+  @Prop() pattern?: string;
+  // Foutmelding
+  @Prop() error: string;
+  // Opties voor select-velden
+  @Prop() options?: { value: string; label: string }[];
 
-  @State() valid: boolean = true; // Houdt bij of het veld geldig is
-  @State() touched: boolean = false; // Houdt bij of het veld is aangeraakt
+  // Houdt bij of het veld geldig is
+  @State() valid: boolean = true;
+  // Houdt bij of het veld is aangeraakt
+  @State() touched: boolean = false;
 
   // EventEmitter om wijzigingen in veldwaarden door te geven aan de parent component
   @Event() valueChanged: EventEmitter<{ name: string; value: string; valid: boolean }>;
 
+  // Timer voor debounce
   private debounceTimer: ReturnType<typeof setTimeout>;
 
   // Verwerkt invoer en valideert het veld
@@ -35,7 +48,8 @@ export class FormField {
     clearTimeout(this.debounceTimer);
     this.debounceTimer = setTimeout(() => {
       this.valid = input.checkValidity();
-      this.valueChanged.emit({ name: this.name, value, valid: this.valid }); // Stuurt data naar parent
+      // Emit wijziging naar parent
+      this.valueChanged.emit({ name: this.name, value, valid: this.valid });
     }, 200);
   };
 

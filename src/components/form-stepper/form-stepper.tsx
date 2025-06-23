@@ -1,5 +1,13 @@
 import { Component, h, State, Listen } from '@stencil/core';
-import { formDataStore } from '../../store/store-form-data';
+import { formDataStore, state } from '../../store/store-form-data';
+
+const stepFieldsMap = {
+  0: ['Naam', 'Email'],
+  1: ['Mobiele nummer', 'Werkervaring'],
+  2: ['Woonplaats', 'Vervoersmiddel'],
+  3: [],
+};
+const maxStep = Object.keys(stepFieldsMap).length - 1;
 
 @Component({
   tag: 'form-stepper',
@@ -7,34 +15,18 @@ import { formDataStore } from '../../store/store-form-data';
   shadow: true,
 })
 export class FormStepper {
-  @State() currentStep: number = 0; // Huidige stap
-  @State() validationStatus: { [key: string]: boolean } = {}; // Validatiestatus van velden
-  @State() formData: { [key: string]: string } = {}; // Gegevens van het formulier
+  @State() validationStatus: { [key: string]: boolean } = {};
+  @State() formData: { [key: string]: string } = {};
 
-  // Navigeer naar een andere stap
-  goToStep(step: number) {
-    this.currentStep = step;
-    formDataStore.setCurrentStep(step); // Werk de store bij
-    window.dispatchEvent(new CustomEvent('updateStep', { detail: step })); // Informeer andere componenten ||| is dispatch nodig?
-  }
-
-  // Luister naar wijzigingen in veldwaarden
   @Listen('valueChanged')
   handleFieldChange(event: CustomEvent<{ name: string; valid: boolean; value?: string }>) {
     const { name, valid, value } = event.detail;
     this.validationStatus = { ...this.validationStatus, [name]: valid && (!value || value !== '0') };
-    this.formData = formDataStore.getAllFields(); // Werk de lokale data bij
+    this.formData = formDataStore.getAllFields();
   }
 
-  // Controleer of de huidige stap geldig is
   private isCurrentStepValid(): boolean {
-    const stepFieldsMap = {
-      0: ['Naam', 'Email'],
-      1: ['Mobiele nummer', 'Werkervaring'],
-      2: ['Woonplaats', 'Vervoersmiddel'],
-      3: [],
-    };
-    const requiredFields = stepFieldsMap[this.currentStep];
+    const requiredFields = stepFieldsMap[state.currentStep];
     return requiredFields.every(name => this.validationStatus[name]);
   }
 
@@ -46,9 +38,8 @@ export class FormStepper {
           <h2>Algemeen vooronderzoek</h2>
         </header>
         <div class="container">
-          <stepper-status></stepper-status> {/* Toon de status van de stappen */}
+          <stepper-status></stepper-status>
           <form class="form">
-            {/* Render de stappen */}
             <form-step step={0}>
               <form-field
                 name="Naam"
@@ -130,8 +121,7 @@ export class FormStepper {
                 ]}
               ></form-field>
             </form-step>
-            {/* Samenvatting stap */}
-            <form-step step={3} class={this.currentStep === 3 ? 'summary' : ''}>
+            <form-step step={3} class={state.currentStep === 3 ? 'summary' : ''}>
               <h3>Samenvatting</h3>
               <ul>
                 {Object.entries(this.formData).map(([key, value]) => (
@@ -146,7 +136,7 @@ export class FormStepper {
             </form-step>
           </form>
         </div>
-        <form-navigation currentStep={this.currentStep} maxStep={3} navigateStep={(step: number) => this.goToStep(step)} disableNext={!this.isCurrentStepValid()}></form-navigation>
+        <form-navigation currentStep={state.currentStep} maxStep={maxStep} disableNext={!this.isCurrentStepValid()}></form-navigation>
       </div>
     );
   }

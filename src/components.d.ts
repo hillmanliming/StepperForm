@@ -29,7 +29,6 @@ export namespace Components {
         "currentStep": number;
         "disableNext": boolean;
         "maxStep": number;
-        "navigateStep": (step: number) => void;
     }
     interface FormStep {
         "step": number;
@@ -118,7 +117,6 @@ declare namespace LocalJSX {
         "currentStep"?: number;
         "disableNext"?: boolean;
         "maxStep"?: number;
-        "navigateStep"?: (step: number) => void;
     }
     interface FormStep {
         "step"?: number;
