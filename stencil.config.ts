@@ -21,9 +21,7 @@ export const config: Config = {
       serviceWorker: null, // disable service workers
       dir: 'docs',
       buildDir: '',
-      copy: [
-        { src: 'assets', dest: './' },
-      ]
+      copy: [{ src: 'assets', dest: './' }],
     },
   ],
   testing: {
