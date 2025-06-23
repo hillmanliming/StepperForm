@@ -20,8 +20,10 @@ export const config: Config = {
       type: 'www',
       serviceWorker: null, // disable service workers
       dir: 'docs',
-      buildDir: ''
-      
+      buildDir: '',
+      copy: [
+        { src: 'assets', dest: './' },
+      ]
     },
   ],
   testing: {
