@@ -1,5 +1,5 @@
-import { r as registerInstance, h } from './index-epPAJl59.js';
-import { f as formDataStore } from './store-form-data-CQ17Q7qP.js';
+import { r as registerInstance, h } from './index-B-rzIFDu.js';
+import { f as formDataStore } from './store-form-data-BVOf73t3.js';
 
 const formNavigationCss = ":host{display:block;position:fixed;bottom:0;right:0;width:100%;z-index:10;}.nav-buttons{display:flex;justify-content:flex-end;gap:1rem;padding:2rem 20%;background-color:white}.primary-button,.sec-button{min-width:7rem;padding:1rem;font-size:1.125rem;line-height:1.625rem;cursor:pointer;border:none;outline:none}.primary-button:focus-visible,.sec-button:focus-visible{outline:2px dashed black;outline-offset:1px}.primary-button:focus-visible{background-color:#00729f}.sec-button:focus-visible{background-color:#99cae8}.primary-button{background-color:#007bc7;color:white}.primary-button:hover{background-color:#00729f}.primary-button:active{background-color:#004977}.primary-button:disabled{background-color:#e6e6e6;color:#999999;cursor:default}.sec-button{background-color:#cce4f3;color:black}.sec-button:hover{background-color:#99cae8}.sec-button:active{background-color:#007bc7}.sec-button:disabled{background-color:#f3f3f3;color:#999999;cursor:default}@media screen and (max-width: 768px){.nav-buttons{padding:1rem;}}";
 

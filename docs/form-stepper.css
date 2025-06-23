@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'ROsanswebtextregular';
-  src: url('../assets/ROsanswebtextregular.woff') format('woff');
+  src: url('assets/ROsanswebtextregular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
