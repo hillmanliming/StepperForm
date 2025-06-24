@@ -1,3 +1,17 @@
+:host {
+  display: block;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+  /* Variables */
+  --font-size-base: 1.125rem;
+  --line-height-base: 1.625rem;
+  --font-size-small: 0.875rem;
+  --line-height-small: 1.125rem;
+  --input-select-border: 1px solid #007bc7;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -11,9 +25,8 @@
 }
 
 label {
-  font-size: 1.125rem;
-  line-height: 1.625rem;
-  font-weight: 500;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
 }
 
 .required {
@@ -46,18 +59,18 @@ select:hover {
 }
 input:focus,
 select:focus {
-  border: 1px solid #007bc7;
+  border: var(--input-select-border);
   border-radius: 0;
 }
 
 input:hover,
 select:hover {
-  border-color: #007bc7;
+  border: var(--input-select-border);
 }
 
 .error {
-  font-size: 0.875rem;
-  line-height: 1.125rem;
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
   visibility: hidden;
   display: flex;
   align-items: center;

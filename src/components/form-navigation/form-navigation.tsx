@@ -31,7 +31,7 @@ export class FormNavigation {
     return (
       <div class="nav-buttons">
         {/* Vorige knop */}
-        <button class="sec-button" type="button" onClick={() => this.goToStep(this.currentStep - 1)} disabled={this.currentStep === 0}>
+        <button class="secondary-button" type="button" onClick={() => this.goToStep(this.currentStep - 1)} disabled={this.currentStep === 0}>
           Vorige
         </button>
         {/* Volgende of versturen knop */}

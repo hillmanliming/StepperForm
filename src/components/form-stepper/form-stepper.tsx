@@ -34,6 +34,7 @@ export class FormStepper {
     return (
       <div class="form-stepper">
         <header>
+          <img src="../assets/Vaandel.png" alt="Vaandel" />
           <h1>Form Stepper Component</h1>
           <h2>Algemeen vooronderzoek</h2>
         </header>

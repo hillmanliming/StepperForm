@@ -1,5 +1,11 @@
 :host {
   display: block;
+  --font-size-base: 1.125rem;
+  --line-height-base: 1.625rem;
+  --font-size-small: 0.875rem;
+  --line-height-small: 1.125rem;
+  --status-active-color: #007bc7;
+  --status-completed-color: #39870b;
 }
 @font-face {
   font-family: 'ROsanswebtextregular';
@@ -26,8 +32,8 @@
 .active,
 .inactive,
 .completed {
-  font-size: 0.875rem;
-  line-height: 1.125rem;
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
   aspect-ratio: 1;
   width: 2rem;
   height: 2rem;
@@ -46,12 +52,12 @@
 }
 
 .time-indication {
-  font-size: 0.875rem;
-  line-height: 1.125rem;
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
 }
 .step-label {
-  font-size: 1.125rem;
-  line-height: 1.625rem;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
 }
 
 .current-label {
@@ -60,8 +66,8 @@
 
 .active {
   color: rgb(255, 255, 255);
-  background-color: #007bc7;
-  border: 2px solid #007bc7;
+  background-color: var(--status-active-color);
+  border: 2px solid var(--status-active-color);
 
   font-weight: bold;
 }
@@ -72,8 +78,8 @@
 
 .completed {
   color: white;
-  background-color: #39870b;
-  border: 2px solid #39870b;
+  background-color: var(--status-completed-color);
+  border: 2px solid var(--status-completed-color);
 }
 
 .completed::before {

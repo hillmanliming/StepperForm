@@ -1,8 +1,12 @@
 :host {
   display: block;
-  width: 100%; /* Laat het de volledige breedte van het scherm innemen */
-  z-index: 10; /* Zorg dat het boven andere elementen blijft */
   margin-top: auto;
+  /* Variables */
+  --primary-button-hover: #00729f;
+  --secondary-button-hover: #99cae8;
+  --disabled-button-text-color: #999999;
+  --font-size-base: 1.125rem;
+  --line-height-base: 1.625rem;
 }
 
 .nav-buttons {
@@ -14,28 +18,28 @@
 }
 
 .primary-button,
-.sec-button {
+.secondary-button {
   min-width: 7rem;
   padding: 1rem;
-  font-size: 1.125rem;
-  line-height: 1.625rem;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
   cursor: pointer;
   border: none;
   outline: none;
 }
 
 .primary-button:focus-visible,
-.sec-button:focus-visible {
+.secondary-button:focus-visible {
   outline: 2px dashed black;
   outline-offset: 1px;
 }
 
 .primary-button:focus-visible {
-  background-color: #00729f;
+  background-color: var(--primary-button-hover);
 }
 
-.sec-button:focus-visible {
-  background-color: #99cae8;
+.secondary-button:focus-visible {
+  background-color: var(--secondary-button-hover);
 }
 .primary-button {
   background-color: #007bc7;
@@ -43,7 +47,7 @@
 }
 
 .primary-button:hover {
-  background-color: #00729f;
+  background-color: var(--primary-button-hover);
 }
 
 .primary-button:active {
@@ -51,26 +55,25 @@
 }
 .primary-button:disabled {
   background-color: #e6e6e6;
-  color: #999999;
+  color: var(--disabled-button-text-color);
   cursor: default;
 }
 
-.sec-button {
+.secondary-button {
   background-color: #cce4f3;
   color: black;
 }
 
-.sec-button:hover {
-  background-color: #99cae8;
+.secondary-button:hover {
+  background-color: var(--secondary-button-hover);
 }
 
-.sec-button:active {
+.secondary-button:active {
   background-color: #007bc7;
 }
-.sec-button:disabled {
+.secondary-button:disabled {
   background-color: #f3f3f3;
-
-  color: #999999;
+  color: var(--disabled-button-text-color);
   cursor: default;
 }
 
