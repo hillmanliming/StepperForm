@@ -122,17 +122,17 @@ export class FormStepper {
               ></form-field>
             </form-step>
             <form-step step={3} class={state.currentStep === 3 ? 'summary' : ''}>
-              <h3>Samenvatting</h3>
-              <ul>
-                {Object.entries(this.formData).map(([key, value]) => (
-                  <li>
-                    <div class="summary-item">
+              <div class="summary-content">
+                <h3>Samenvatting</h3>
+                <ul>
+                  {Object.entries(this.formData).map(([key, value]) => (
+                    <li class="summary-item">
                       <strong>{key}:</strong>
                       <span>{value}</span>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </form-step>
           </form>
         </div>

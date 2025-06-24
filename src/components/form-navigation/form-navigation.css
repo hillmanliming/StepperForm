@@ -1,10 +1,8 @@
 :host {
   display: block;
-  position: fixed; /* Zorg dat het altijd op dezelfde plek blijft */
-  bottom: 0; /* Plaats het aan de onderkant van het scherm */
-  right: 0; /* Zorg dat het begint aan de linkerzijde */
   width: 100%; /* Laat het de volledige breedte van het scherm innemen */
   z-index: 10; /* Zorg dat het boven andere elementen blijft */
+  margin-top: auto;
 }
 
 .nav-buttons {

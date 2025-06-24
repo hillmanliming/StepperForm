@@ -11,7 +11,6 @@
 .stepper-status {
   display: flex;
   flex-direction: column; /* Stack steps vertically */
-  justify-content: center;
   gap: 2rem; /* Space between step containers */
   background-color: white;
   padding: 2rem;
@@ -86,4 +85,11 @@
   align-items: center;
   width: 100%;
   height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .stepper-status {
+    padding: 1rem; /* Reduce padding for smaller screens */
+    gap: 1rem; /* Reduce gap between steps */
+  }
 }
