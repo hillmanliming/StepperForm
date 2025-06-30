@@ -48,6 +48,7 @@ select {
 
 input {
   padding: 0.5rem 1rem; /* Top, Right, Bottom, Left padding */
+  transition-duration: 0.15s;
 }
 
 select {
@@ -57,15 +58,23 @@ select {
 select:hover {
   cursor: pointer; /* Change cursor to pointer on hover */
 }
+
+/* Border wordt zwart bij hover, behalve als het veld ook focus heeft */
+input:hover:not(:focus),
+select:hover:not(:focus) {
+  border: 1px solid black;
+}
+
+/* Border wordt blauw bij focus */
 input:focus,
 select:focus {
   border: var(--input-select-border);
   border-radius: 0;
 }
 
-input:hover,
-select:hover {
-  border: var(--input-select-border);
+input.invalid + .error,
+select.invalid + .error {
+  visibility: visible;
 }
 
 .error {
@@ -75,9 +84,4 @@ select:hover {
   display: flex;
   align-items: center;
   gap: 0.25rem;
-}
-
-input.invalid + .error,
-select.invalid + .error {
-  visibility: visible;
 }
