@@ -33,29 +33,43 @@ export class FormField {
   @State() valid: boolean = true;
   // Houdt bij of het veld is aangeraakt
   @State() touched: boolean = false;
+  @State() showError: boolean = false;
 
   // EventEmitter om wijzigingen in veldwaarden door te geven aan de parent component
   @Event() valueChanged: EventEmitter<{ name: string; value: string; valid: boolean }>;
 
-  // Timer voor debounce
-  private debounceTimer: ReturnType<typeof setTimeout>;
+  // Timer voor error-delay
+  private errorTimer: ReturnType<typeof setTimeout>;
 
-  // Verwerkt invoer en valideert het veld
+  // Directe validatie bij input
   private handleInput = (event: Event) => {
     const input = event.target as HTMLInputElement | HTMLSelectElement;
     const value = input.value;
     this.touched = true;
-    clearTimeout(this.debounceTimer);
-    this.debounceTimer = setTimeout(() => {
-      this.valid = input.checkValidity();
-      // Emit wijziging naar parent
-      this.valueChanged.emit({ name: this.name, value, valid: this.valid });
-    }, 200);
+
+    // Input validatie
+    this.valid = input.checkValidity();
+    this.valueChanged.emit({ name: this.name, value, valid: this.valid });
+
+    // Reset error-timer
+    clearTimeout(this.errorTimer);
+    // Alleen error tonen als ongeldig en touched
+    if (!this.valid && this.touched) {
+      this.errorTimer = setTimeout(() => {
+        this.showError = true;
+      }, 250);
+    } else {
+      this.showError = false;
+    }
   };
 
   // Markeert het veld als aangeraakt bij verlies van focus
   private handleBlur = () => {
     this.touched = true;
+    // Bij blur: error direct tonen als ongeldig
+    if (!this.valid) {
+      this.showError = true;
+    }
   };
 
   render() {
@@ -91,8 +105,8 @@ export class FormField {
             class={{ invalid: !this.valid && this.touched }}
           />
         )}
-        {/* Foutmelding */}
-        <p class="error" style={{ visibility: !this.valid && this.touched ? 'visible' : 'hidden' }}>
+        {/* Error pas tonen na delay */}
+        <p class="error" style={{ visibility: this.showError ? 'visible' : 'hidden' }}>
           <img src="/assets/Notification-icons.svg" alt="" class="error-icon" />
           <span>{this.error}</span>
         </p>

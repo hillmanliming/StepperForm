@@ -19,11 +19,6 @@ export class FormNavigation {
     formDataStore.setCurrentStep(step);
   }
 
-  // Handler voor het versturen van het formulier
-  private handleSubmit() {
-    alert('Formulier is verstuurd!');
-  }
-
   render() {
     // Controleer of dit de laatste stap is
     const isLastStep = this.currentStep === this.maxStep;
@@ -31,13 +26,33 @@ export class FormNavigation {
     return (
       <div class="nav-buttons">
         {/* Vorige knop */}
-        <button class="secondary-button" type="button" onClick={() => this.goToStep(this.currentStep - 1)} disabled={this.currentStep === 0}>
+        <button
+          class="secondary-button"
+          type="button"
+          onClick={() => this.goToStep(this.currentStep - 1)}
+          disabled={this.currentStep === 0}
+        >
           Vorige
         </button>
         {/* Volgende of versturen knop */}
-        <button class="primary-button" type="button" onClick={() => (isLastStep ? this.handleSubmit() : this.goToStep(this.currentStep + 1))} disabled={this.disableNext}>
-          {isLastStep ? 'Versturen' : 'Volgende'}
-        </button>
+        {!isLastStep ? (
+          <button
+            class="primary-button"
+            type="button"
+            onClick={() => this.goToStep(this.currentStep + 1)}
+            disabled={this.disableNext}
+          >
+            Volgende
+          </button>
+        ) : (
+          <button
+            class="primary-button"
+            type="submit"
+            disabled={this.disableNext}
+          >
+            Versturen
+          </button>
+        )}
       </div>
     );
   }

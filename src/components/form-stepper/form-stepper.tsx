@@ -38,6 +38,17 @@ export class FormStepper {
     return requiredFields.every(name => this.validationStatus[name]);
   }
 
+  // Naar volgende stap gaan bij Enter-toets
+  private handleFormKeyDown = (event: KeyboardEvent) => {
+    if (event.key === 'Enter' && document.activeElement && document.activeElement.tagName !== 'TEXTAREA') {
+      event.preventDefault();
+      // Alleen als huidige stap geldig is en niet de laatste stap
+      if (this.isCurrentStepValid() && state.currentStep < maxStep) {
+        formDataStore.setCurrentStep(state.currentStep + 1);
+      }
+    }
+  };
+
   // Render het formulier en de stappen
   render() {
     return (
@@ -53,7 +64,7 @@ export class FormStepper {
           {/* Stap-indicator */}
           <stepper-status></stepper-status>
           {/* Formulier met stappen */}
-          <form class="form">
+          <form class="form" onKeyDown={this.handleFormKeyDown}>
             {/* Stap 0 */}
             <form-step step={0}>
               <form-field
