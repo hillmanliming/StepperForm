@@ -13,6 +13,8 @@ export class FormNavigation {
   @Prop() maxStep: number;
   // Of de volgende knop uitgeschakeld moet zijn
   @Prop() disableNext: boolean;
+  // Handler voor het versturen van het formulier
+  @Prop() onSubmit: () => void;
 
   // Zet de huidige stap in de store
   private goToStep(step: number) {
@@ -26,33 +28,13 @@ export class FormNavigation {
     return (
       <div class="nav-buttons">
         {/* Vorige knop */}
-        <button
-          class="secondary-button"
-          type="button"
-          onClick={() => this.goToStep(this.currentStep - 1)}
-          disabled={this.currentStep === 0}
-        >
+        <button class="secondary-button" type="button" onClick={() => this.goToStep(this.currentStep - 1)} disabled={this.currentStep === 0}>
           Vorige
         </button>
         {/* Volgende of versturen knop */}
-        {!isLastStep ? (
-          <button
-            class="primary-button"
-            type="button"
-            onClick={() => this.goToStep(this.currentStep + 1)}
-            disabled={this.disableNext}
-          >
-            Volgende
-          </button>
-        ) : (
-          <button
-            class="primary-button"
-            type="submit"
-            disabled={this.disableNext}
-          >
-            Versturen
-          </button>
-        )}
+        <button class="primary-button" type="button" onClick={() => (isLastStep ? this.onSubmit() : this.goToStep(this.currentStep + 1))} disabled={this.disableNext}>
+          {isLastStep ? 'Versturen' : 'Volgende'}
+        </button>
       </div>
     );
   }

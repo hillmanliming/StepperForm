@@ -83,6 +83,19 @@ form {
   padding: 2rem;
 }
 
+.confirmation {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.confirmation img {
+  width: 50px; /* Adjust the size of the checkmark */
+  height: auto;
+  margin-bottom: 1rem; /* Space between image and text */
+}
 @media screen and (max-width: 768px) {
   header {
     padding: 0 1rem 1rem 1rem; /* Reduce padding for smaller screens */

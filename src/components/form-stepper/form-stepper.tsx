@@ -23,14 +23,25 @@ export class FormStepper {
   @State() validationStatus: { [key: string]: boolean } = {};
   // Houdt de ingevulde formuliervelden bij
   @State() formData: { [key: string]: string } = {};
+  @State() submitted: boolean = false;
 
   // Luister naar wijzigingen in formuliervelden
   @Listen('valueChanged')
-  handleFieldChange(event: CustomEvent<{ name: string; valid: boolean; value?: string }>) {
-    const { name, valid, value } = event.detail;
-    this.validationStatus = { ...this.validationStatus, [name]: valid && (!value || value !== '0') };
+  handleFieldChange(event: CustomEvent<{ name: string; valid: boolean; value?: string; minlength?: number }>) {
+    const { name, valid, value, minlength } = event.detail;
+    // Alleen valideren als de waarde lang genoeg is, of als er geen minlength is
+    if (typeof minlength === 'number' && value && value.length < minlength) {
+      this.validationStatus = { ...this.validationStatus, [name]: false };
+    } else {
+      this.validationStatus = { ...this.validationStatus, [name]: valid && (!value || value !== '0') };
+    }
     this.formData = formDataStore.getAllFields();
   }
+
+  // Handler voor het versturen van het formulier
+  private handleSubmit = () => {
+    this.submitted = true;
+  };
 
   // Controleer of alle verplichte velden van de huidige stap geldig zijn
   private isCurrentStepValid(): boolean {
@@ -38,19 +49,17 @@ export class FormStepper {
     return requiredFields.every(name => this.validationStatus[name]);
   }
 
-  // Naar volgende stap gaan bij Enter-toets
-  private handleFormKeyDown = (event: KeyboardEvent) => {
-    if (event.key === 'Enter' && document.activeElement && document.activeElement.tagName !== 'TEXTAREA') {
-      event.preventDefault();
-      // Alleen als huidige stap geldig is en niet de laatste stap
-      if (this.isCurrentStepValid() && state.currentStep < maxStep) {
-        formDataStore.setCurrentStep(state.currentStep + 1);
-      }
-    }
-  };
-
   // Render het formulier en de stappen
   render() {
+    if (this.submitted) {
+      return (
+        <div class="confirmation">
+          <img src="../assets/Checkmark.svg" alt="Checkmark" />
+          <h2>Succesvol verzonden!</h2>
+        </div>
+      );
+    }
+
     return (
       <div class="form-stepper">
         {/* Header met afbeelding en titels */}
@@ -64,7 +73,7 @@ export class FormStepper {
           {/* Stap-indicator */}
           <stepper-status></stepper-status>
           {/* Formulier met stappen */}
-          <form class="form" onKeyDown={this.handleFormKeyDown}>
+          <form class="form">
             {/* Stap 0 */}
             <form-step step={0}>
               <form-field
@@ -166,7 +175,7 @@ export class FormStepper {
           </form>
         </div>
         {/* Navigatieknoppen onderaan */}
-        <form-navigation currentStep={state.currentStep} maxStep={maxStep} disableNext={!this.isCurrentStepValid()}></form-navigation>
+        <form-navigation currentStep={state.currentStep} maxStep={maxStep} disableNext={!this.isCurrentStepValid()} onSubmit={this.handleSubmit}></form-navigation>
       </div>
     );
   }
