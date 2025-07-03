@@ -12,7 +12,7 @@ const StepperStatus = class {
         const steps = [1, 2, 3, 4];
         const stepLabels = ['Persoonlijke informatie', 'Relevante gegevens', 'Reizen en vervoer', 'Overzicht'];
         const stepTimes = ['<1 min', '<1 min', '<1 min', ''];
-        return (h("div", { key: '83b5a5da8e7a978c2f5f5f49f047a4aad994acd3', class: "stepper-status" }, steps.map((step, index) => {
+        return (h("div", { key: 'c44cc851927b8a34dceb001c1b136b960ff39d9a', class: "stepper-status" }, steps.map((step, index) => {
             // Bepaal de status-klasse voor deze stap
             let stepClass = 'inactive';
             if (index < state.currentStep) {

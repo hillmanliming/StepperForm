@@ -14,6 +14,7 @@ const FormNavigation = class {
     // Of de volgende knop uitgeschakeld moet zijn
     disableNext;
     // Handler voor het versturen van het formulier
+    //De confirmatie is alleen een visuale feedback en wordt niet gebruikt in de logica; er wordt geen data naar een server gestuurd.
     onSubmit;
     // Zet de huidige stap in de store
     goToStep(step) {
@@ -22,7 +23,7 @@ const FormNavigation = class {
     render() {
         // Controleer of dit de laatste stap is
         const isLastStep = this.currentStep === this.maxStep;
-        return (h("div", { key: '7594070ab9d90da90e014c4d1f979ae02de96d4d', class: "nav-buttons" }, h("button", { key: 'c153ad5fb39c52af67956c661a967ec8fbba223a', class: "secondary-button", type: "button", onClick: () => this.goToStep(this.currentStep - 1), disabled: this.currentStep === 0 }, "Vorige"), h("button", { key: '9f5a71c070d2ff4029d775812e086ed20b1ae3e8', class: "primary-button", type: "button", onClick: () => (isLastStep ? this.onSubmit() : this.goToStep(this.currentStep + 1)), disabled: this.disableNext }, isLastStep ? 'Versturen' : 'Volgende')));
+        return (h("div", { key: 'ab4ff9ca30002154f8d7a393e4a3e4e3047ecffd', class: "nav-buttons" }, h("button", { key: 'b6e98b0af93edb5330e303454702234134228cde', class: "secondary-button", type: "button", onClick: () => this.goToStep(this.currentStep - 1), disabled: this.currentStep === 0 }, "Vorige"), h("button", { key: '453ef2804ae862a99c3025bdd9e9af0a15c34af8', class: "primary-button", type: "button", onClick: () => (isLastStep ? this.onSubmit() : this.goToStep(this.currentStep + 1)), disabled: this.disableNext }, isLastStep ? 'Versturen' : 'Volgende')));
     }
 };
 FormNavigation.style = formNavigationCss;

@@ -14,6 +14,7 @@ export class FormNavigation {
   // Of de volgende knop uitgeschakeld moet zijn
   @Prop() disableNext: boolean;
   // Handler voor het versturen van het formulier
+  //De confirmatie is alleen een visuale feedback en wordt niet gebruikt in de logica; er wordt geen data naar een server gestuurd.
   @Prop() onSubmit: () => void;
 
   // Zet de huidige stap in de store
