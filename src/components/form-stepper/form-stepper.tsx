@@ -43,7 +43,7 @@ export class FormStepper {
     this.submitted = true;
   };
 
-  // Controleer of alle verplichte velden van de huidige stap geldig zijn
+  // C`ontroleer of alle verplichte velden van de huidige stap geldig zijn
   private isCurrentStepValid(): boolean {
     const requiredFields = stepFieldsMap[state.currentStep];
     return requiredFields.every(name => this.validationStatus[name]);
@@ -54,7 +54,7 @@ export class FormStepper {
     if (this.submitted) {
       return (
         <div class="confirmation">
-          <img src="../assets/Checkmark.svg" alt="Checkmark" />
+          <img src="assets/Checkmark.svg" alt="Checkmark" />
           <h2>Succesvol verzonden!</h2>
         </div>
       );
@@ -64,7 +64,7 @@ export class FormStepper {
       <div class="form-stepper">
         {/* Header met afbeelding en titels */}
         <header>
-          <img src="../assets/Vaandel.png" alt="Vaandel" />
+          <img src="assets/Vaandel.png" alt="Vaandel" />
           <h1>Form Stepper Component</h1>
           <h2>Algemeen vooronderzoek</h2>
         </header>

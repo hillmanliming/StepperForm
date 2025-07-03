@@ -7,12 +7,12 @@
 
 ## Properties
 
-| Property       | Attribute       | Description | Type                     | Default     |
-| -------------- | --------------- | ----------- | ------------------------ | ----------- |
-| `currentStep`  | `current-step`  |             | `number`                 | `undefined` |
-| `disableNext`  | `disable-next`  |             | `boolean`                | `undefined` |
-| `maxStep`      | `max-step`      |             | `number`                 | `undefined` |
-| `navigateStep` | `navigate-step` |             | `(step: number) => void` | `undefined` |
+| Property      | Attribute      | Description | Type         | Default     |
+| ------------- | -------------- | ----------- | ------------ | ----------- |
+| `currentStep` | `current-step` |             | `number`     | `undefined` |
+| `disableNext` | `disable-next` |             | `boolean`    | `undefined` |
+| `maxStep`     | `max-step`     |             | `number`     | `undefined` |
+| `onSubmit`    | `on-submit`    |             | `() => void` | `undefined` |
 
 
 ## Dependencies

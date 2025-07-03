@@ -1,15 +1,14 @@
 :host {
   display: block;
-  position: relative; /* Allows positioning of the nav-buttons */
   box-sizing: border-box; /* Ensures padding is included in height */
   margin: 0;
   padding: 0;
   height: 100vh;
-
   /* Variables */
   --font-size-base: 1.125rem;
   --line-height-base: 1.625rem;
   --element-background: white;
+  /* font-family: 'ROsanswebtextregular'; */
 }
 
 h1,

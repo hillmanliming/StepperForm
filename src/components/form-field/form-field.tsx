@@ -107,7 +107,7 @@ export class FormField {
         )}
         {/* Error pas tonen na delay */}
         <p class="error" style={{ visibility: this.showError ? 'visible' : 'hidden' }}>
-          <img src="/assets/Notification-icons.svg" alt="" class="error-icon" />
+          <img src="assets/Notification-icons.svg" alt="error-icon" />
           <span>{this.error}</span>
         </p>
       </div>
