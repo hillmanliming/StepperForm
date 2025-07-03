@@ -3,7 +3,7 @@ const BUILD = /* form-stepper */ { allRenderFn: true, appendChildSlotFix: false,
 const Env = /* form-stepper */ {};
 
 const globalScripts = () => {};
-const globalStyles = "@font-face {\n  font-family: 'ROsanswebtextregular';\n  src: url('../assets/ROsanswebtextregular.woff') format('woff');\n  font-weight: normal;\n  font-style: normal;\n}\n\n*,\ninput,\ntextarea,\nselect {\n  font-family: 'ROsanswebtextregular';\n  padding: 0;\n  margin: 0;\n}\n\nhtml {\n  display: flex;\n  justify-content: center;\n  min-height: 100vh;\n}\n\nbody {\n  background-color: #f9f9f9;\n  width: 100%;\n  height: 100%;\n}\n";
+const globalStyles = "@font-face {\n  font-family: 'ROsanswebtextregular';\n  src: url('../assets/ROsanswebtextregular.woff') format('woff');\n  font-weight: normal;\n  font-style: normal;\n}\n\n*,\ninput,\ntextarea,\nselect {\n  font-family: 'ROsanswebtextregular';\n  padding: 0;\n}\n\nhtml {\n  display: flex;\n  justify-content: center;\n  min-height: 100vh;\n  margin: 0;\n  padding: 0;\n}\n\nbody {\n  background-color: #f9f9f9;\n  width: 100%;\n  height: 100%;\n}\n";
 
 /*
  Stencil Client Platform v4.35.1 | MIT Licensed | https://stenciljs.com
@@ -4233,6 +4233,6 @@ var insertChildVNodeAnnotations = (doc, vnodeChild, cmpData, hostId, depth, inde
 };
 
 export { BUILD as B, H, NAMESPACE as N, createEvent as a, bootstrapLazy as b, consoleDevInfo as c, getElement as d, getRenderingRef as e, forceUpdate as f, globalScripts as g, h, promiseResolve as p, registerInstance as r, setNonce as s, win as w };
-//# sourceMappingURL=index-epPAJl59.js.map
+//# sourceMappingURL=index-DsQM20MY.js.map
 
-//# sourceMappingURL=index-epPAJl59.js.map
+//# sourceMappingURL=index-DsQM20MY.js.map

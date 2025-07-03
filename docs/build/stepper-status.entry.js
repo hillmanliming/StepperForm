@@ -1,5 +1,5 @@
-import { r as registerInstance, h } from './index-1jtv562_.js';
-import { s as state } from './store-form-data-CuSxk1Cs.js';
+import { r as registerInstance, h } from './index-DcwCctZS.js';
+import { s as state } from './store-form-data-DvC3oF0f.js';
 
 const stepperStatusCss = ":host{display:block;--font-size-base:1.125rem;--line-height-base:1.625rem;--font-size-small:0.875rem;--line-height-small:1.125rem;--status-active-color:#007bc7;--status-completed-color:#39870b}@font-face{font-family:'ROsanswebtextregular';src:url('../../assets/ROsanswebtextbold.woff') format('woff');font-weight:bold;font-style:normal}.stepper-status{display:flex;flex-direction:column;gap:2rem;background-color:white;padding:2rem}.step-container{display:flex;flex-direction:row;align-items:center;gap:1rem;}.active,.inactive,.completed{font-size:var(--font-size-small);line-height:var(--line-height-small);aspect-ratio:1;width:2rem;height:2rem;text-align:center;box-sizing:border-box;aspect-ratio:1;border-radius:50%;display:flex;align-items:center;justify-content:center}.step-info{display:flex;flex-direction:column;}.time-indication{font-size:var(--font-size-small);line-height:var(--line-height-small)}.step-label{font-size:var(--font-size-base);line-height:var(--line-height-base)}.current-label{font-weight:bolder}.active{color:rgb(255, 255, 255);background-color:var(--status-active-color);border:2px solid var(--status-active-color);font-weight:bold}.inactive{border:2px solid black}.completed{color:white;background-color:var(--status-completed-color);border:2px solid var(--status-completed-color)}.completed::before{content:'✓';font-size:1.3rem;line-height:1;display:flex;justify-content:center;align-items:center;width:100%;height:100%}@media screen and (max-width: 768px){.stepper-status{padding:1rem;gap:1rem;}}";
 
@@ -12,7 +12,7 @@ const StepperStatus = class {
         const steps = [1, 2, 3, 4];
         const stepLabels = ['Persoonlijke informatie', 'Relevante gegevens', 'Reizen en vervoer', 'Overzicht'];
         const stepTimes = ['<1 min', '<1 min', '<1 min', ''];
-        return (h("div", { key: 'c44cc851927b8a34dceb001c1b136b960ff39d9a', class: "stepper-status" }, steps.map((step, index) => {
+        return (h("div", { key: '83b5a5da8e7a978c2f5f5f49f047a4aad994acd3', class: "stepper-status" }, steps.map((step, index) => {
             // Bepaal de status-klasse voor deze stap
             let stepClass = 'inactive';
             if (index < state.currentStep) {
